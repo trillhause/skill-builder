@@ -78,7 +78,7 @@
         "Style tabs to match IDE aesthetic",
         "Handle empty state (no tabs open)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.6",
@@ -94,7 +94,7 @@
         "Prevent duplicate tabs for same file",
         "Handle tab activation when opening existing file"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.7",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 4,
+  "completedTasks": 6,
   "status": "in-progress",
   "completedAt": null
 }
