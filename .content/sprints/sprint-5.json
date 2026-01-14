@@ -60,7 +60,7 @@
         "Handle cleanup on component unmount",
         "Add ref to terminal container div"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.5",
@@ -75,7 +75,7 @@
         "Update terminal prompt when environment changes",
         "Test switching between Node and Bash modes"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.6",
@@ -91,7 +91,7 @@
         "Handle special keys (backspace, arrow keys)",
         "Clear input buffer after command execution"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.7",
@@ -107,7 +107,7 @@
         "Handle edge cases (empty history, at beginning/end)",
         "Test history navigation works correctly"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.8",
@@ -121,7 +121,7 @@
         "Test that history persists after clear",
         "Ensure cursor returns to prompt after clear"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.9",
