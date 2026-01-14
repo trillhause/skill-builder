@@ -136,7 +136,7 @@
         "Test clicking 'Global Session' multiple times focuses same tab",
         "Verify only one terminal tab can exist at a time"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.10",

@@ -832,3 +832,12 @@ Additional Features:
 - Smooth cursor blinking
 - TypeScript types for all refs and state
 
+[2026-01-14 13:50] Task 5.9: Integrate TerminalTab into TabContent - COMPLETE
+- Imported TerminalTab in TabContent.tsx
+- Replaced placeholder for 'terminal' case with TerminalTab component
+- Terminal renders when terminal tab is active
+- Singleton behavior already handled by TerminalSidebar (uses same tab id 'terminal-global')
+- Clicking 'Global Session' multiple times focuses same tab (WorkspaceContext prevents duplicates)
+- Only one terminal tab can exist at a time per design
+- TabContent properly displays TerminalTab with all functionality
+

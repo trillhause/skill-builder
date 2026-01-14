@@ -3,6 +3,7 @@
 import { useWorkspace } from '@/contexts/WorkspaceContext';
 import MonacoEditor from '@/components/MonacoEditor';
 import VersionViewerTab from '@/components/tabs/VersionViewerTab';
+import TerminalTab from '@/components/tabs/TerminalTab';
 
 export default function TabContent() {
   const { tabs, activeTabId } = useWorkspace();
@@ -45,13 +46,7 @@ export default function TabContent() {
       );
 
     case 'terminal':
-      return (
-        <div className="tab-content-placeholder">
-          <h2>Terminal</h2>
-          <p>Session: {activeTab.sessionId || 'Unknown'}</p>
-          <p className="placeholder-text">Terminal content coming soon</p>
-        </div>
-      );
+      return <TerminalTab />;
 
     case 'builder-chat':
       return (
