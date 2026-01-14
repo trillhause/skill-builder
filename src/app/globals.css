@@ -876,3 +876,77 @@ a {
   color: var(--text-secondary);
   font-size: 14px;
 }
+/* Terminal Tab */
+.terminal-tab {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-primary);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  height: 2.5rem;
+  flex-shrink: 0;
+}
+
+.environment-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.environment-selector label {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.environment-selector select {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  outline: none;
+}
+
+.environment-selector select:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
+}
+
+.environment-selector select:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+}
+
+.terminal-container {
+  flex: 1;
+  overflow: hidden;
+  padding: var(--spacing-sm);
+}
+
+/* Override xterm.js default styles to match our theme */
+.terminal-container .xterm {
+  height: 100%;
+}
+
+.terminal-container .xterm-viewport {
+  overflow-y: auto;
+  background-color: var(--bg-primary);
+}
+
+.terminal-container .xterm-screen {
+  background-color: var(--bg-primary);
+}

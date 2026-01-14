@@ -151,7 +151,7 @@
         "Ensure terminal fills available tab content area",
         "Test theme consistency with rest of application"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.11",
@@ -166,7 +166,7 @@
         "Add smooth transitions for selector interactions",
         "Test selector appearance in dark theme"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.12",

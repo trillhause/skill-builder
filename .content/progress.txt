@@ -841,3 +841,40 @@ Additional Features:
 - Only one terminal tab can exist at a time per design
 - TabContent properly displays TerminalTab with all functionality
 
+[2026-01-14 13:55] Tasks 5.10-5.11: Style terminal tab and environment selector - COMPLETE
+- Added comprehensive CSS to globals.css for terminal styling:
+
+Task 5.10: Terminal Tab Dark Theme
+- .terminal-tab with full height flex column layout
+- Background: var(--bg-primary) matching IDE theme
+- .terminal-header with 2.5rem height, flex layout, border-bottom
+- .terminal-container with flex: 1, overflow hidden, padding
+- Overridden xterm.js default styles to match our theme:
+  - .xterm with height: 100%
+  - .xterm-viewport with dark background
+  - .xterm-screen with dark background
+- Terminal fills available tab content area
+- Consistent dark theme throughout
+
+Task 5.11: Environment Selector Styling
+- .environment-selector with flex layout and gap
+- Label styled with secondary text color, font-weight: 500
+- Select dropdown styled to match IDE controls:
+  - Background: var(--bg-tertiary)
+  - Border: var(--border-primary)
+  - Color: var(--text-primary)
+  - Border-radius: 4px, padding: 4px 8px
+  - Font-size: 13px
+- Hover state: Changes to --bg-hover with accent border
+- Focus state: Blue border and subtle box-shadow
+- Smooth transitions (--transition-fast)
+- Clear visual indication of current environment
+- Positioned in terminal header area (right-aligned)
+- Dark theme compatible
+
+Additional styling:
+- Consistent spacing using CSS variables
+- Proper border and background colors
+- Responsive layout with flex
+- All interactive elements have hover/focus states
+
