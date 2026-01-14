@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Play, CheckCircle2, Clock, XCircle, MessageSquare, PlayCircle, AlertTriangle, ChevronRight, ChevronDown } from 'lucide-react';
-import { getRunThreadById, RunStatus, TrajectoryStep } from '@/data/mockRunData';
+import { useState, useEffect, useRef } from 'react';
+import { Play, CheckCircle2, Clock, XCircle, MessageSquare, PlayCircle, AlertTriangle, ChevronRight, ChevronDown, Square } from 'lucide-react';
+import { getRunThreadById, getRunSessionById, RunStatus, TrajectoryStep, createRunSession, updateRunSessionStatus, appendTrajectoryStep, generateMockTrajectory } from '@/data/mockRunData';
+import { StreamController, StreamChunk } from '@/utils/mockStreaming';
 
 interface RunTabProps {
   tabId: string;
@@ -112,9 +113,15 @@ export default function RunTab({ tabId, threadId }: RunTabProps) {
   const [model, setModel] = useState('Claude 3.5 Sonnet');
   const [prompt, setPrompt] = useState('');
   const [runStatus, setRunStatus] = useState<RunStatus>('ready');
+  const [sessionId, setSessionId] = useState<string | null>(null);
+
+  const streamControllerRef = useRef<StreamController | null>(null);
+  const threadRef = useRef(threadId);
 
   const thread = getRunThreadById(threadId);
-  const latestSession = thread?.sessions[thread.sessions.length - 1];
+  const latestSession = sessionId ? getRunSessionById(sessionId) : thread?.sessions[thread.sessions.length - 1];
+
+  threadRef.current = threadId;
 
   useEffect(() => {
     if (latestSession) {
@@ -122,12 +129,63 @@ export default function RunTab({ tabId, threadId }: RunTabProps) {
       if (latestSession.prompt && !prompt) {
         setPrompt(latestSession.prompt);
       }
+      if (latestSession.status === 'completed' || latestSession.status === 'failed') {
+        streamControllerRef.current = null;
+      }
     }
   }, [latestSession, prompt]);
 
-  const handleSubmit = () => {
-    console.log('Submit run with prompt:', prompt, 'model:', model);
-    // Task 6.7: Integrate streaming simulation
+  const handleSubmit = async () => {
+    if (!prompt.trim() || runStatus === 'running') return;
+
+    const controller = new StreamController();
+    streamControllerRef.current = controller;
+
+    const session = createRunSession(threadId, prompt, model);
+    setSessionId(session.id);
+    setRunStatus('running');
+
+    try {
+      const trajectorySteps = generateMockTrajectory(prompt, model);
+
+      for (const step of trajectorySteps as TrajectoryStep[]) {
+        if (controller.isCancelled()) {
+          break;
+        }
+
+        await controller.waitIfPaused();
+
+        if (controller.isCancelled()) {
+          break;
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, Math.random() * 500 + 300));
+
+        appendTrajectoryStep(session.id, step);
+        setRunStatus('running');
+      }
+
+      if (!controller.isCancelled()) {
+        updateRunSessionStatus(session.id, 'completed');
+        setRunStatus('completed');
+      }
+    } catch (error) {
+      console.error('Run error:', error);
+      updateRunSessionStatus(session.id, 'failed');
+      setRunStatus('failed');
+    } finally {
+      streamControllerRef.current = null;
+    }
+  };
+
+  const handleCancel = () => {
+    if (streamControllerRef.current) {
+      streamControllerRef.current.cancel();
+      if (sessionId) {
+        updateRunSessionStatus(sessionId, 'failed');
+        setRunStatus('failed');
+      }
+    }
   };
 
   const getStatusIcon = () => {
@@ -191,12 +249,21 @@ export default function RunTab({ tabId, threadId }: RunTabProps) {
           rows={4}
         />
         <button
-          onClick={handleSubmit}
-          disabled={!prompt.trim() || runStatus === 'running'}
+          onClick={runStatus === 'running' ? handleCancel : handleSubmit}
+          disabled={!prompt.trim() && runStatus !== 'running'}
           className="submit-button"
         >
-          <Play size={16} />
-          <span>Run Test</span>
+          {runStatus === 'running' ? (
+            <>
+              <Square size={16} />
+              <span>Cancel</span>
+            </>
+          ) : (
+            <>
+              <Play size={16} />
+              <span>Run Test</span>
+            </>
+          )}
         </button>
       </div>
 

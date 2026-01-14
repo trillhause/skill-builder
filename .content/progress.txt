@@ -1225,3 +1225,32 @@ All requirements met:
 - TypeScript compilation passed
 - Build successful (766.8ms)
 
+[2026-01-14 17:50] Task 6.7: Integrate streaming simulation with RunTab - COMPLETE
+- Added generateMockTrajectory() function in mockRunData.ts
+  - Creates 6 mock trajectory steps with varying types
+  - Includes message, tool_call, and result steps
+  - Realistic timestamps with delays
+- Added appendTrajectoryStep() to incrementally update trajectory
+- Integrated streaming simulation in RunTab
+  - Import StreamController from mockStreaming
+  - Create new run session on Submit
+  - Stream trajectory steps with random delays (300-800ms)
+  - Update run status to 'running' during execution
+  - Update status to 'completed' when done
+  - Append steps incrementally to session.trajectory
+- Added handleCancel() function for cancelling in-progress runs
+  - Calls StreamController.cancel()
+  - Updates session status to 'failed'
+  - Updates UI status to 'failed'
+- Updated submit button to show "Cancel" when running
+  - Changes icon from Play to Square
+  - Changes text from "Run Test" to "Cancel"
+  - Allows cancelling mid-execution
+- Added StreamController ref for cleanup
+- Added thread ref for tracking current thread
+- Added sessionId state to track active session
+- Error handling with try/catch block
+- Cleanup controller in finally block
+- TypeScript compilation passed
+- Build successful (842.3ms)
+

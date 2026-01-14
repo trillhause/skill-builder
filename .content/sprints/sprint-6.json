@@ -95,7 +95,7 @@
         "Animate expand/collapse with smooth transitions",
         "Allow multiple sections to be expanded simultaneously"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "6.7",

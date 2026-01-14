@@ -222,6 +222,66 @@ export function updateRunSessionStatus(sessionId: string, status: RunStatus, tra
   }
 }
 
+export function appendTrajectoryStep(sessionId: string, step: TrajectoryStep): void {
+  const session = getRunSessionById(sessionId);
+  if (session) {
+    session.trajectory.push(step);
+  }
+}
+
+export function generateMockTrajectory(prompt: string, model: string): TrajectoryStep[] {
+  const steps: TrajectoryStep[] = [];
+  const startTime = new Date();
+
+  steps.push({
+    id: `step-${startTime.getTime()}-1`,
+    type: 'message',
+    content: `Starting analysis with ${model}...`,
+    timestamp: new Date(startTime.getTime() + 100),
+  });
+
+  steps.push({
+    id: `step-${startTime.getTime()}-2`,
+    type: 'tool_call',
+    content: `tool: search\nargs: { "query": "${prompt.substring(0, 50)}..." }`,
+    timestamp: new Date(startTime.getTime() + 500),
+    expanded: false,
+  });
+
+  steps.push({
+    id: `step-${startTime.getTime()}-3`,
+    type: 'result',
+    content: `Found 5 relevant documents. Analyzing content...`,
+    timestamp: new Date(startTime.getTime() + 1500),
+    expanded: false,
+  });
+
+  steps.push({
+    id: `step-${startTime.getTime()}-4`,
+    type: 'tool_call',
+    content: `tool: analyze\nargs: { "documents": 5 }`,
+    timestamp: new Date(startTime.getTime() + 2500),
+    expanded: false,
+  });
+
+  steps.push({
+    id: `step-${startTime.getTime()}-5`,
+    type: 'result',
+    content: `Analysis complete. Generated response with 3 key points.`,
+    timestamp: new Date(startTime.getTime() + 4000),
+    expanded: false,
+  });
+
+  steps.push({
+    id: `step-${startTime.getTime()}-6`,
+    type: 'message',
+    content: `Based on the analysis, here are the key findings:\n\n1. The primary theme is ${model} capabilities\n2. Performance metrics show 95% accuracy\n3. Recommendations include further testing`,
+    timestamp: new Date(startTime.getTime() + 5000),
+  });
+
+  return steps;
+}
+
 export function formatTimeAgo(date: Date): string {
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
