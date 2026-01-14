@@ -129,3 +129,36 @@ All requirements met:
 - Empty state shown when no file selected
 - TypeScript compilation passed
 - Linting passed with no errors
+
+[2026-01-14 00:55] Task 2.5 & 2.6: Create TabManager and useFileManager - COMPLETE
+- Created src/components/TabManager.tsx component
+- Defined Tab interface with id, name, path, content, language
+- Implemented tabs state management with props
+- Created tab bar UI with horizontal scroll support
+- Added active tab highlighting with blue bottom border
+- Implemented tab close button (X icon from lucide-react)
+- Click handler for tab switching
+- Styled tabs in globals.css to match IDE aesthetic:
+  - Horizontal scrollbar for many tabs
+  - Active tab with primary background
+  - Hover states for tabs and close buttons
+  - Smooth transitions
+- Created src/hooks/useFileManager.ts custom hook
+- Managed openTabs and activeTabId state
+- Implemented openFile function:
+  - Adds new tabs
+  - Prevents duplicate tabs for same file
+  - Activates tab when opening existing file
+- Implemented closeTab function:
+  - Removes tabs
+  - Switches to previous tab when closing active tab
+  - Handles closing last tab
+- Implemented switchTab function to change active tab
+- Implemented getActiveTab helper function
+- Fully integrated into /files page:
+  - FileTree click opens files in new tabs
+  - TabManager displays all open tabs
+  - Switching tabs shows correct content in Monaco
+  - Closing tabs works properly
+- TypeScript compilation passed
+- Linting passed with no errors
