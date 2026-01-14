@@ -215,6 +215,15 @@ a {
   background-color: var(--bg-hover);
 }
 
+.file-tree-row.selected {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.file-tree-row.selected .file-tree-name {
+  color: var(--text-primary);
+}
+
 .file-tree-icon {
   display: flex;
   align-items: center;
@@ -269,6 +278,7 @@ a {
 /* Tab Manager Component */
 .tab-manager {
   width: 100%;
+  height: 2rem;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-primary);
 }
@@ -300,11 +310,12 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
-  height: 100%;
+  height: 2rem;
   padding: 0 12px;
   background: var(--bg-secondary);
   color: var(--text-secondary);
   border-right: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--border-primary);
   cursor: pointer;
   transition: background-color var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
@@ -396,7 +407,6 @@ a {
   align-items: center;
   height: 2rem;
   gap: var(--spacing-xs);
-  padding: var(--spacing-sm);
   border-bottom: 1px solid var(--border-primary);
   background: var(--bg-secondary);
 }
@@ -513,6 +523,15 @@ a {
 
 .sidebar-list-item:hover {
   background-color: var(--bg-hover);
+}
+
+.sidebar-list-item.active {
+  background-color: var(--bg-tertiary);
+}
+
+.sidebar-list-item.active .sidebar-item-name {
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 .sidebar-item-name {
@@ -716,8 +735,9 @@ a {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-bottom: 1px solid var(--border-primary);
+  height: 2rem;
   font-size: 13px;
   overflow-x: auto;
   white-space: nowrap;
@@ -764,10 +784,13 @@ a {
 .file-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-auto-rows: min-content;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   overflow-y: auto;
   flex: 1;
+  align-items: start;
+  align-content: start;
 }
 
 .file-grid-item {
@@ -778,6 +801,9 @@ a {
   cursor: pointer;
   border-radius: 4px;
   transition: background-color var(--transition-fast);
+  height: fit-content;
+  align-self: start;
+  width: 100%;
 }
 
 .file-grid-item:hover {
@@ -824,6 +850,7 @@ a {
   padding: var(--spacing-sm) var(--spacing-md);
   border-bottom: 1px solid var(--border-primary);
   background: var(--bg-secondary);
+  height: 2rem;
 }
 
 .file-content-path {

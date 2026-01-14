@@ -5,8 +5,11 @@ import { Plus } from 'lucide-react';
 import { getAllVersions } from '@/data/mockVersionData';
 
 export default function GraphSidebar() {
-  const { openTab, currentVersion } = useWorkspace();
+  const { openTab, currentVersion, tabs, activeTabId } = useWorkspace();
   const versions = getAllVersions(); // Returns sorted by version number descending (V8, V7, V6...)
+
+  const activeTab = tabs.find(t => t.id === activeTabId);
+  const activeVersionId = activeTab?.type === 'version-viewer' ? activeTab.versionId : undefined;
 
   const handleVersionClick = (versionId: string, versionName: string) => {
     openTab({
@@ -30,7 +33,7 @@ export default function GraphSidebar() {
         {versions.map((version) => (
           <div
             key={version.id}
-            className="sidebar-list-item"
+            className={`sidebar-list-item ${activeVersionId === version.id ? 'active' : ''}`}
             onClick={() => handleVersionClick(version.id, version.name)}
           >
             <div className="version-list-item">

@@ -6,7 +6,10 @@ import { mockSkillFolder, FileNode } from '@/data/mockSkillData';
 import { Plus } from 'lucide-react';
 
 export default function FilesSidebar() {
-  const { openTab } = useWorkspace();
+  const { openTab, tabs, activeTabId } = useWorkspace();
+
+  const activeTab = tabs.find(t => t.id === activeTabId);
+  const selectedPath = activeTab?.type === 'editor' ? activeTab.path : undefined;
 
   const handleFileClick = (file: FileNode) => {
     // Open file in a new editor tab
@@ -29,7 +32,7 @@ export default function FilesSidebar() {
           <Plus size={16} />
         </button>
       </div>
-      <FileTree data={mockSkillFolder} onFileClick={handleFileClick} />
+      <FileTree data={mockSkillFolder} onFileClick={handleFileClick} selectedPath={selectedPath} />
     </div>
   );
 }

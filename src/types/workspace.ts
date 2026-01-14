@@ -20,6 +20,17 @@ export type TabType =
   | 'testset-manager'
   | 'analysis-manager';
 
+// Mapping from tab type to corresponding sidebar icon
+export const TAB_TO_SIDEBAR_ICON: Record<TabType, SidebarIcon> = {
+  'editor': 'files',
+  'version-viewer': 'graph',
+  'terminal': 'terminal',
+  'builder-chat': 'builder',
+  'tester-run': 'tester',
+  'testset-manager': 'testsets',
+  'analysis-manager': 'analysis'
+};
+
 // Tab interface with icon and context-specific data
 export interface Tab {
   id: string;

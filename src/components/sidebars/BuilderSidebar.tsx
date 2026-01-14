@@ -10,7 +10,10 @@ const MOCK_THREADS = [
 ];
 
 export default function BuilderSidebar() {
-  const { openTab } = useWorkspace();
+  const { openTab, tabs, activeTabId } = useWorkspace();
+
+  const activeTab = tabs.find(t => t.id === activeTabId);
+  const activeThreadId = activeTab?.type === 'builder-chat' ? activeTab.threadId : undefined;
 
   const handleThreadClick = (threadId: string, threadName: string) => {
     openTab({
@@ -34,7 +37,7 @@ export default function BuilderSidebar() {
         {MOCK_THREADS.map((thread) => (
           <div
             key={thread.id}
-            className="sidebar-list-item"
+            className={`sidebar-list-item ${activeThreadId === thread.id ? 'active' : ''}`}
             onClick={() => handleThreadClick(thread.id, thread.name)}
           >
             <span className="sidebar-item-name">{thread.name}</span>

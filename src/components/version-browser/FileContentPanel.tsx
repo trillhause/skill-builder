@@ -18,9 +18,9 @@ export default function FileContentPanel({ file }: FileContentPanelProps) {
 
   return (
     <div className="file-content-panel">
-      <div className="file-content-header">
+      {/* <div className="file-content-header">
         <span className="file-content-path">{file.path}</span>
-      </div>
+      </div> */}
       <div className="file-content-editor">
         <MonacoEditor
           content={file.content || '// No content available'}

@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useReducer, useCallback, ReactNode, useContext } from 'react';
-import { Tab, SidebarIcon, WorkspaceState, WorkspaceActions } from '@/types/workspace';
+import { Tab, SidebarIcon, WorkspaceState, WorkspaceActions, TAB_TO_SIDEBAR_ICON } from '@/types/workspace';
 
 // Initial state
 const initialState: WorkspaceState = {
@@ -66,8 +66,11 @@ function workspaceReducer(state: WorkspaceState, action: Action): WorkspaceState
       };
     }
 
-    case 'SET_ACTIVE_TAB':
-      return { ...state, activeTabId: action.payload };
+    case 'SET_ACTIVE_TAB': {
+      const tab = state.tabs.find(t => t.id === action.payload);
+      const newSidebarIcon = tab ? TAB_TO_SIDEBAR_ICON[tab.type] : state.activeSidebarIcon;
+      return { ...state, activeTabId: action.payload, activeSidebarIcon: newSidebarIcon };
+    }
 
     case 'UPDATE_CURRENT_VERSION':
       return { ...state, currentVersion: action.payload };

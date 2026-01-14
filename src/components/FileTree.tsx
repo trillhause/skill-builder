@@ -7,17 +7,20 @@ import { FileNode } from '@/data/mockSkillData';
 interface FileTreeProps {
   data: FileNode;
   onFileClick: (file: FileNode) => void;
+  selectedPath?: string;
 }
 
 interface FileTreeItemProps {
   node: FileNode;
   level: number;
   onFileClick: (file: FileNode) => void;
+  selectedPath?: string;
 }
 
-function FileTreeItem({ node, level, onFileClick }: FileTreeItemProps) {
+function FileTreeItem({ node, level, onFileClick, selectedPath }: FileTreeItemProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const isFolder = node.type === 'folder';
+  const isSelected = !isFolder && selectedPath === node.path;
 
   const handleClick = () => {
     if (isFolder) {
@@ -30,7 +33,7 @@ function FileTreeItem({ node, level, onFileClick }: FileTreeItemProps) {
   return (
     <div className="file-tree-item">
       <div
-        className="file-tree-row"
+        className={`file-tree-row ${isSelected ? 'selected' : ''}`}
         style={{ paddingLeft: `${level * 16}px` }}
         onClick={handleClick}
       >
@@ -59,6 +62,7 @@ function FileTreeItem({ node, level, onFileClick }: FileTreeItemProps) {
               node={child}
               level={level + 1}
               onFileClick={onFileClick}
+              selectedPath={selectedPath}
             />
           ))}
         </div>
@@ -67,7 +71,7 @@ function FileTreeItem({ node, level, onFileClick }: FileTreeItemProps) {
   );
 }
 
-export default function FileTree({ data, onFileClick }: FileTreeProps) {
+export default function FileTree({ data, onFileClick, selectedPath }: FileTreeProps) {
   return (
     <div className="file-tree">
       {data.children?.map((child) => (
@@ -76,6 +80,7 @@ export default function FileTree({ data, onFileClick }: FileTreeProps) {
           node={child}
           level={0}
           onFileClick={onFileClick}
+          selectedPath={selectedPath}
         />
       ))}
     </div>

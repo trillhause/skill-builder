@@ -10,7 +10,10 @@ const MOCK_TEST_SETS = [
 ];
 
 export default function TestSetsSidebar() {
-  const { openTab } = useWorkspace();
+  const { openTab, tabs, activeTabId } = useWorkspace();
+
+  const activeTab = tabs.find(t => t.id === activeTabId);
+  const activeSetId = activeTab?.type === 'testset-manager' ? activeTab.setId : undefined;
 
   const handleSetClick = (setId: string, setName: string) => {
     openTab({
@@ -34,7 +37,7 @@ export default function TestSetsSidebar() {
         {MOCK_TEST_SETS.map((set) => (
           <div
             key={set.id}
-            className="sidebar-list-item"
+            className={`sidebar-list-item ${activeSetId === set.id ? 'active' : ''}`}
             onClick={() => handleSetClick(set.id, set.name)}
           >
             <span className="sidebar-item-name">{set.name}</span>

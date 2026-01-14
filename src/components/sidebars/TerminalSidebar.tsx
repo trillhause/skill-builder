@@ -4,7 +4,10 @@ import { useWorkspace } from '@/contexts/WorkspaceContext';
 import { Terminal as TerminalIcon } from 'lucide-react';
 
 export default function TerminalSidebar() {
-  const { openTab } = useWorkspace();
+  const { openTab, tabs, activeTabId } = useWorkspace();
+
+  const activeTab = tabs.find(t => t.id === activeTabId);
+  const activeSessionId = activeTab?.type === 'terminal' ? activeTab.sessionId : undefined;
 
   const handleSessionClick = () => {
     openTab({
@@ -22,7 +25,7 @@ export default function TerminalSidebar() {
         <h3>Terminal</h3>
       </div>
       <div className="sidebar-list">
-        <div className="sidebar-list-item" onClick={handleSessionClick}>
+        <div className={`sidebar-list-item ${activeSessionId === 'global' ? 'active' : ''}`} onClick={handleSessionClick}>
           <TerminalIcon size={16} />
           <span className="sidebar-item-name">Global Session</span>
         </div>
