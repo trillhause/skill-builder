@@ -57,10 +57,10 @@ export default function VersionBrowser({ rootFolder }: VersionBrowserProps) {
 
   return (
     <>
-    <BreadcrumbNav segments={breadcrumbs} onNavigate={handleBreadcrumbClick} />
+    <BreadcrumbNav segments={breadcrumbs} onNavigate={handleBreadcrumbClick} selectedFile={selectedFile} />
     <div className="version-browser">
       <div className="version-browser-left">
-        <FileGrid items={currentFolderContents} onItemClick={handleItemClick} />
+        <FileGrid items={currentFolderContents} onItemClick={handleItemClick} selectedFile={selectedFile} />
       </div>
       <div className="version-browser-right">
           <FileContentPanel file={selectedFile} />

@@ -6,6 +6,7 @@ import { Folder, File } from 'lucide-react';
 interface FileGridProps {
   items: FileNode[];
   onItemClick: (item: FileNode) => void;
+  selectedFile: FileNode | null;
 }
 
 // Map file types to icons
@@ -20,7 +21,7 @@ function getFileIcon(type: FileNodeType): React.ComponentType<{ size?: number }>
   }
 }
 
-export default function FileGrid({ items, onItemClick }: FileGridProps) {
+export default function FileGrid({ items, onItemClick, selectedFile }: FileGridProps) {
   if (items.length === 0) {
     return (
       <div className="file-grid-empty">
@@ -33,10 +34,11 @@ export default function FileGrid({ items, onItemClick }: FileGridProps) {
     <div className="file-grid">
       {items.map((item) => {
         const Icon = getFileIcon(item.type);
+        const isSelected = selectedFile?.id === item.id;
         return (
           <div
             key={item.id}
-            className="file-grid-item"
+            className={`file-grid-item ${isSelected ? 'selected' : ''}`}
             onClick={() => onItemClick(item)}
             title={item.name}
           >

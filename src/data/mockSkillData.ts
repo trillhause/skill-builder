@@ -265,7 +265,7 @@ The skill uses a modular approach to discover blog posts across different platfo
 // Mock skill folder structure
 export const mockSkillFolder: FileNode = {
   id: 'root',
-  name: 'Skill Folder',
+  name: 'root',
   type: 'folder',
   path: '/',
   children: [
