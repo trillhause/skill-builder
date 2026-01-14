@@ -207,19 +207,6 @@ export default function TerminalTab() {
 
   return (
     <div className="terminal-tab">
-      <div className="terminal-header">
-        <div className="environment-selector">
-          <label htmlFor="env-select">Environment:</label>
-          <select
-            id="env-select"
-            value={environment}
-            onChange={(e) => handleEnvironmentChange(e.target.value as Environment)}
-          >
-            <option value="bash">Bash</option>
-            <option value="node">Node.js</option>
-          </select>
-        </div>
-      </div>
       <div
         ref={terminalRef}
         className="terminal-container"
