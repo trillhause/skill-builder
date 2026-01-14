@@ -161,7 +161,7 @@
       "id": 6,
       "name": "Skill Tester View",
       "status": "in-progress",
-      "goal": "Implement tester sidebar with run threads and run tabs",
+      "goal": "Implement tester sidebar with run threads and run tabs (13/15 tasks complete, 2 pending action buttons)",
       "requirements": [
         "Sidebar lists run threads (e.g., 'Figma Blog Run', 'Anthropic Blog Run')",
         "New Run button creates thread",
