@@ -28,7 +28,7 @@
         "Add sample TypeScript file (e.g., types.ts)",
         "Structure data with nested folders and files"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.3",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 1,
+  "completedTasks": 2,
   "status": "in-progress",
   "completedAt": null
 }
