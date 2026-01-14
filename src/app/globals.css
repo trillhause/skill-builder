@@ -547,6 +547,40 @@ a {
   white-space: nowrap;
 }
 
+.sidebar-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-indicator.status-completed {
+  background-color: var(--accent-success);
+  box-shadow: 0 0 4px rgba(63, 185, 80, 0.3);
+}
+
+.status-indicator.status-running {
+  background-color: var(--accent-primary);
+  box-shadow: 0 0 4px rgba(88, 166, 255, 0.3);
+}
+
+.status-indicator.status-failed {
+  background-color: var(--accent-error);
+  box-shadow: 0 0 4px rgba(237, 137, 78, 0.3);
+}
+
+.status-indicator.status-ready {
+  background-color: var(--text-muted);
+}
+
 /* Version List Item */
 .version-list-item {
   display: flex;

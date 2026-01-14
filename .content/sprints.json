@@ -160,7 +160,7 @@
     {
       "id": 6,
       "name": "Skill Tester View",
-      "status": "pending",
+      "status": "in-progress",
       "goal": "Implement tester sidebar with run threads and run tabs",
       "requirements": [
         "Sidebar lists run threads (e.g., 'Figma Blog Run', 'Anthropic Blog Run')",

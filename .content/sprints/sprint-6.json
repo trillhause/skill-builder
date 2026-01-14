@@ -1,0 +1,254 @@
+{
+  "sprintId": 6,
+  "name": "Skill Tester View",
+  "goal": "Implement tester sidebar with run threads and run tabs",
+  "tasks": [
+    {
+      "id": "6.1",
+      "category": "setup",
+      "description": "Create mock run threads data structure",
+      "steps": [
+        "Create src/data/mockRunData.ts with TypeScript interfaces",
+        "Define RunThread interface with id, name, timestamp, model, status",
+        "Define RunSession interface with id, threadId, prompt, trajectory, model, status",
+        "Define TrajectoryStep interface with type, content, timestamp",
+        "Create array of mock run threads (3-5 threads)",
+        "Create array of mock run sessions with trajectory data",
+        "Implement helper functions: getRunThreads(), getRunSessions(), createRunThread()",
+        "TypeScript compilation passed"
+      ],
+      "passes": true
+    },
+    {
+      "id": "6.2",
+      "category": "functional",
+      "description": "Update TesterSidebar with run threads list",
+      "steps": [
+        "Import mock run threads data",
+        "Replace placeholder threads list with real data",
+        "Display thread name and timestamp in sidebar items",
+        "Add status indicator (running, completed, failed) for each thread",
+        "Add 'New Run' button in sidebar header",
+        "Wire click handler to open run tab for selected thread",
+        "Style sidebar items with hover states",
+        "Timestamp formatted nicely (e.g., '2 hours ago')"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.3",
+      "category": "functional",
+      "description": "Create mock streaming simulation utility",
+      "steps": [
+        "Create src/utils/mockStreaming.ts",
+        "Define StreamChunk interface with text, timestamp",
+        "Define StreamConfig interface with speed, chunks",
+        "Implement streamText() function that yields chunks over time",
+        "Implement simulateRun() function that generates trajectory steps",
+        "Support different stream speeds (fast, normal, slow)",
+        "Handle pause/resume simulation",
+        "Export streaming utility for use in RunTab"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.4",
+      "category": "functional",
+      "description": "Create RunTab component with model selector and prompt input",
+      "steps": [
+        "Create src/components/tabs/RunTab.tsx",
+        "Accept threadId as prop",
+        "Fetch run session data from mock data",
+        "Add model selector dropdown (Claude 3.5, GPT-4, etc.)",
+        "Add text area for prompt input",
+        "Add 'Submit' button to start run",
+        "Add run status indicator (Ready, Running, Completed)",
+        "Display initial state when no run has been executed"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.5",
+      "category": "functional",
+      "description": "Implement run output area with trajectory display",
+      "steps": [
+        "Create RunOutput component inside RunTab",
+        "Display output area below prompt input",
+        "Render trajectory steps in chronological order",
+        "Support different step types: message, tool_call, result, error",
+        "Apply appropriate styling for each step type",
+        "Handle empty state when no output yet",
+        "Make output area scrollable with auto-scroll to bottom"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.6",
+      "category": "functional",
+      "description": "Implement expandable trajectory sections",
+      "steps": [
+        "Add expand/collapse toggle for trajectory sections",
+        "Use ChevronRight/ChevronDown icons from lucide-react",
+        "Store expanded state for each section",
+        "Collapse large content by default (tool calls, results)",
+        "Show summary text for collapsed sections",
+        "Animate expand/collapse with smooth transitions",
+        "Allow multiple sections to be expanded simultaneously"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.7",
+      "category": "functional",
+      "description": "Integrate streaming simulation with RunTab",
+      "steps": [
+        "Import mockStreaming utility",
+        "On Submit, create new run session",
+        "Start streaming trajectory steps in real-time",
+        "Update output area incrementally as chunks arrive",
+        "Update run status from 'Running' to 'Completed' when done",
+        "Handle streaming errors gracefully",
+        "Allow cancelling in-progress runs",
+        "Update TesterSidebar with new run thread"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.8",
+      "category": "functional",
+      "description": "Add 'Add to Analysis Set' action button",
+      "steps": [
+        "Add action button in RunTab header or footer",
+        "Label button 'Add to Analysis Set'",
+        "Show dialog/modal for selecting analysis set",
+        "Display existing analysis sets from mock data",
+        "Option to create new analysis set",
+        "On confirm, add run to selected analysis set",
+        "Show success message/toast notification",
+        "Update sidebar if Analysis Sets is being viewed"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.9",
+      "category": "functional",
+      "description": "Add 'Add prompt to Test Set' action button",
+      "steps": [
+        "Add action button next to 'Add to Analysis Set'",
+        "Label button 'Add to Test Set'",
+        "Show dialog/modal for selecting test set",
+        "Display existing test sets from mock data",
+        "Option to create new test set",
+        "Extract prompt text from run session",
+        "On confirm, add prompt to selected test set",
+        "Show success message/toast notification"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.10",
+      "category": "functional",
+      "description": "Wire 'New Run' button in TesterSidebar",
+      "steps": [
+        "Implement handleNewRun function in TesterSidebar",
+        "Create new run thread with unique ID",
+        "Generate default name (e.g., 'New Run', 'Run N')",
+        "Set timestamp to current time",
+        "Set status to 'ready'",
+        "Open new RunTab for the new thread",
+        "Add thread to sidebar list",
+        "Set thread as active in sidebar"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.11",
+      "category": "visual",
+      "description": "Style RunTab to match IDE aesthetic",
+      "steps": [
+        "Apply dark theme colors to RunTab",
+        "Style model selector with proper border and hover states",
+        "Style prompt input textarea with proper sizing",
+        "Style 'Submit' button with accent color",
+        "Style output area with code-like appearance",
+        "Add proper spacing between sections",
+        "Style trajectory steps with different colors by type",
+        "Style action buttons in header",
+        "Ensure consistent typography"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.12",
+      "category": "visual",
+      "description": "Style TesterSidebar list items",
+      "steps": [
+        "Apply hover states to thread items",
+        "Style status indicators (color-coded: green=completed, blue=running, red=failed)",
+        "Style 'New Run' button in header",
+        "Style timestamps with muted text color",
+        "Add border-bottom between items",
+        "Style active thread when its tab is open",
+        "Ensure consistent spacing with other sidebars",
+        "Make thread list scrollable"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.13",
+      "category": "functional",
+      "description": "Implement run tab singleton behavior",
+      "steps": [
+        "Ensure clicking same thread focuses existing run tab",
+        "Use threadId as tab ID for duplicate detection",
+        "Update existing tab data if thread is clicked again",
+        "Verify multiple run tabs can coexist",
+        "Test clicking different threads opens different tabs",
+        "Verify tab persistence when switching sidebar icons"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.14",
+      "category": "testing",
+      "description": "Test run workflow end-to-end",
+      "steps": [
+        "Click Tester icon to see run threads in sidebar",
+        "Click 'New Run' to create new thread",
+        "Verify new thread appears in sidebar",
+        "Click thread to open RunTab",
+        "Select model from dropdown",
+        "Type prompt in input area",
+        "Click 'Submit' to start run",
+        "Verify streaming output appears incrementally",
+        "Verify trajectory sections are displayed correctly",
+        "Test expand/collapse functionality",
+        "Verify run status changes to 'Completed'",
+        "Click 'Add to Analysis Set' and verify workflow",
+        "Click 'Add to Test Set' and verify workflow",
+        "Open multiple run tabs and verify they work independently"
+      ],
+      "passes": false
+    },
+    {
+      "id": "6.15",
+      "category": "testing",
+      "description": "Build and verification",
+      "steps": [
+        "Run npm run build",
+        "Verify build completes without errors",
+        "Check TypeScript compilation passes",
+        "Run npm run lint",
+        "Verify no linting errors",
+        "Test application in browser",
+        "Verify all Sprint 6 passing conditions",
+        "Verify no console errors"
+      ],
+      "passes": false
+    }
+  ],
+  "totalTasks": 15,
+  "completedTasks": 0,
+  "status": "in-progress",
+  "startedAt": "2026-01-14T17:15:00-05:00"
+}

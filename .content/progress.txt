@@ -1051,3 +1051,68 @@ All requirements met:
   ✓ Environment selector functional
   ✓ Command history working
 
+
+== Sprint 6: Skill Tester View ==
+
+[2026-01-14 17:15] Sprint 6 setup - COMPLETE
+- Created .content/sprints/sprint-6.json with 15 tasks
+- Task breakdown covers all Sprint 6 requirements:
+  - Mock run threads data structure
+  - TesterSidebar with run threads list
+  - Mock streaming simulation utility
+  - RunTab component with model selector and prompt input
+  - Run output area with trajectory display
+  - Expandable trajectory sections
+  - Streaming simulation integration
+  - 'Add to Analysis Set' action
+  - 'Add prompt to Test Set' action
+  - 'New Run' button functionality
+  - Visual styling for RunTab and TesterSidebar
+  - End-to-end testing
+  - Build and verification
+- Updated sprints.json: Sprint 6 status changed to "in-progress"
+- Ready to begin Sprint 6 implementation
+
+[2026-01-14 17:20] Task 6.1: Create mock run threads data structure - COMPLETE
+- Created src/data/mockRunData.ts with TypeScript interfaces
+- Defined RunStatus type: 'ready' | 'running' | 'completed' | 'failed'
+- Defined TrajectoryStepType type: 'message' | 'tool_call' | 'result' | 'error'
+- Defined TrajectoryStep interface with id, type, content, timestamp, expanded
+- Defined RunSession interface with id, threadId, prompt, model, status, trajectory, timestamps
+- Defined RunThread interface with id, name, createdAt, status, sessions
+- Created array of 4 mock run threads:
+  - 'Figma Blog Run' (completed)
+  - 'Anthropic Blog Run' (completed)
+  - 'Test Run 3' (failed)
+  - 'Test Run 4' (ready)
+- Implemented helper functions:
+  - getRunThreads() - returns all threads
+  - getRunThreadById(id) - finds thread by ID
+  - getRunSessions(threadId) - gets sessions for a thread
+  - getRunSessionById(sessionId) - finds session by ID
+  - createRunThread(name?) - creates new thread
+  - createRunSession(threadId, prompt, model) - creates new session
+  - updateRunSessionStatus(sessionId, status, trajectory?) - updates session
+  - formatTimeAgo(date) - formats timestamp as "2h ago", "5m ago", etc.
+- TypeScript compilation passed
+- Build successful (916.6ms)
+
+[2026-01-14 17:25] Task 6.2: Update TesterSidebar with run threads list - COMPLETE
+- Updated src/components/sidebars/TesterSidebar.tsx
+- Replaced MOCK_TEST_THREADS with getRunThreads() from mockRunData
+- Added status indicators for each thread:
+  - Green dot with glow for 'completed' status
+  - Blue dot with glow for 'running' status
+  - Red dot with glow for 'failed' status
+  - Gray dot for 'ready' status
+- Added 'New Run' button in sidebar header (placeholder for Task 6.10)
+- Display thread name and formatted timestamp (formatTimeAfo)
+- Wire click handler to open run tab with id 'run-{threadId}'
+- Created sidebar-item-row flex layout for name and status indicator
+- Added CSS styles for status indicators in globals.css:
+  - .status-indicator with 8px circular dot
+  - Color-coded statuses with glow effects using box-shadow
+  - .sidebar-item-row with flex layout and 8px gap
+- TypeScript compilation passed
+- Build successful (4.1s)
+
