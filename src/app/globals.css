@@ -186,3 +186,63 @@ a {
   font-size: 14px;
   color: var(--text-muted);
 }
+
+/* File Tree Component */
+.file-tree {
+  height: 100%;
+  overflow-y: auto;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 13px;
+  user-select: none;
+}
+
+.file-tree-item {
+  width: 100%;
+}
+
+.file-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding-right: var(--spacing-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.file-tree-row:hover {
+  background-color: var(--bg-hover);
+}
+
+.file-tree-icon {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.file-tree-icon .chevron {
+  color: var(--text-secondary);
+  transition: transform var(--transition-fast);
+}
+
+.file-tree-icon .folder-icon {
+  color: var(--accent-primary);
+}
+
+.file-tree-icon .file-icon {
+  color: var(--text-secondary);
+  margin-left: 20px; /* Align with folder names */
+}
+
+.file-tree-name {
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-tree-children {
+  width: 100%;
+}
