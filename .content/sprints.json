@@ -129,7 +129,7 @@
     {
       "id": 5,
       "name": "Terminal View",
-      "status": "pending",
+      "status": "complete",
       "goal": "Implement terminal sidebar and terminal tab",
       "requirements": [
         "Sidebar shows single item: 'Global Session'",

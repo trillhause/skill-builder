@@ -33,7 +33,7 @@ export default function TerminalTab() {
         foreground: '#e6edf3',
         cursor: '#58a6ff',
         cursorAccent: '#0d1117',
-        selection: 'rgba(88, 166, 255, 0.3)',
+        selectionBackground: 'rgba(88, 166, 255, 0.3)',
         black: '#484f58',
         red: '#ff7b72',
         green: '#3fb950',
