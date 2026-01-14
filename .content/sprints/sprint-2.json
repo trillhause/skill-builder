@@ -13,7 +13,7 @@
         "Verify package installation",
         "Test basic Monaco import in a component"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.2",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 0,
-  "status": "pending",
+  "completedTasks": 1,
+  "status": "in-progress",
   "completedAt": null
 }
