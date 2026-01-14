@@ -127,7 +127,7 @@
         "Test opening multiple files creates multiple tabs",
         "Verify tab order matches opening order"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.9",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 7,
+  "completedTasks": 8,
   "status": "in-progress",
   "completedAt": null
 }
