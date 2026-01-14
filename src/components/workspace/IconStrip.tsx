@@ -6,20 +6,20 @@ import {
   FolderTree,
   GitBranch,
   Terminal,
-  Wrench,
-  FlaskConical,
-  TestTube,
+  Hammer,
+  Play,
+  TestTubes,
   BarChart3
 } from 'lucide-react';
 
 const SIDEBAR_ICONS: Array<{ icon: SidebarIcon; component: React.ReactNode; title: string }> = [
   { icon: 'files', component: <FolderTree size={16} />, title: 'Files' },
   { icon: 'graph', component: <GitBranch size={16} />, title: 'Version Graph' },
-  { icon: 'terminal', component: <Terminal size={16} />, title: 'Terminal' },
-  { icon: 'builder', component: <Wrench size={16} />, title: 'Skill Builder' },
-  { icon: 'tester', component: <FlaskConical size={16} />, title: 'Skill Tester' },
-  { icon: 'testsets', component: <TestTube size={16} />, title: 'Test Sets' },
+  { icon: 'tester', component: <Play size={16} />, title: 'Skill Tester' },
+  { icon: 'testsets', component: <TestTubes size={16} />, title: 'Test Sets' },
   { icon: 'analysis', component: <BarChart3 size={16} />, title: 'Analysis' },
+  { icon: 'builder', component: <Hammer size={16} />, title: 'Skill Builder' },
+  { icon: 'terminal', component: <Terminal size={16} />, title: 'Terminal' },
 ];
 
 export default function IconStrip() {

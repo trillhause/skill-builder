@@ -114,10 +114,18 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
       // Update current version
       dispatch({ type: 'UPDATE_CURRENT_VERSION', payload: versionName });
 
-      // Close the version viewer tab if provided
-      if (tabId) {
-        dispatch({ type: 'CLOSE_TAB', payload: tabId });
-      }
+      // Open the version tab
+      const newTabId = `version-${versionId}`;
+      dispatch({
+        type: 'OPEN_TAB',
+        payload: {
+          id: newTabId,
+          type: 'version-viewer',
+          title: versionName,
+          versionId,
+          isClosable: true
+        }
+      });
     }, [])
   };
 

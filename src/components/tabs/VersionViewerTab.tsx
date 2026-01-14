@@ -11,7 +11,7 @@ interface VersionViewerTabProps {
 }
 
 export default function VersionViewerTab({ versionId, tabId }: VersionViewerTabProps) {
-  const { checkoutVersion } = useWorkspace();
+  const { checkoutVersion, currentVersion } = useWorkspace();
   const version = getVersionById(versionId);
 
   const handleCheckout = () => {
@@ -19,6 +19,9 @@ export default function VersionViewerTab({ versionId, tabId }: VersionViewerTabP
       checkoutVersion(versionId, version.name, tabId);
     }
   };
+
+  // Check if this is the active/checked-out version
+  const isActiveVersion = version && version.name === currentVersion;
 
   return (
     <div className="version-viewer-tab">
@@ -29,6 +32,7 @@ export default function VersionViewerTab({ versionId, tabId }: VersionViewerTabP
             checkoutMessage={{
               show: true,
               onCheckout: handleCheckout,
+              isActiveVersion,
             }}
           />
         </div>
