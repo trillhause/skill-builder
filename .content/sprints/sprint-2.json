@@ -111,7 +111,7 @@
         "Add resizable splitter between tree and editor (optional stretch goal)",
         "Style layout with proper spacing and borders"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.8",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 6,
+  "completedTasks": 7,
   "status": "in-progress",
   "completedAt": null
 }
