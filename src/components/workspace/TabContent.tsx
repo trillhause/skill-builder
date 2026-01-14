@@ -4,6 +4,7 @@ import { useWorkspace } from '@/contexts/WorkspaceContext';
 import MonacoEditor from '@/components/MonacoEditor';
 import VersionViewerTab from '@/components/tabs/VersionViewerTab';
 import TerminalTab from '@/components/tabs/TerminalTab';
+import RunTab from '@/components/tabs/RunTab';
 
 export default function TabContent() {
   const { tabs, activeTabId } = useWorkspace();
@@ -59,11 +60,10 @@ export default function TabContent() {
 
     case 'tester-run':
       return (
-        <div className="tab-content-placeholder">
-          <h2>Skill Tester Run</h2>
-          <p>Thread: {activeTab.threadId || 'New Test'}</p>
-          <p className="placeholder-text">Tester interface coming soon</p>
-        </div>
+        <RunTab
+          tabId={activeTab.id}
+          threadId={activeTab.threadId || ''}
+        />
       );
 
     case 'testset-manager':

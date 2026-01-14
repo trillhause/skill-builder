@@ -1140,3 +1140,67 @@ All requirements met:
 - TypeScript compilation passed
 - Build successful (849.3ms)
 
+[2026-01-14 17:35] Task 6.4: Create RunTab component with model selector and prompt input - COMPLETE
+- Created src/components/tabs/RunTab.tsx
+- Accept tabId and threadId as props
+- Fetch run thread data using getRunThreadById()
+- Get latest session for status and prompt
+- Add model selector dropdown with 5 models:
+  - Claude 3.5 Sonnet (default)
+  - Claude 3 Opus
+  - GPT-4 Turbo
+  - GPT-4
+  - Gemini Pro
+- Add text area for prompt input (4 rows)
+- Add 'Run Test' submit button with Play icon
+- Add run status indicator with icons:
+  - Clock icon for 'ready' status (gray)
+  - Play icon for 'running' status (blue)
+  - CheckCircle2 icon for 'completed' status (green)
+  - XCircle icon for 'failed' status (red)
+- Disable submit button when prompt is empty or run is running
+- Load prompt from latest session on mount
+- Update TabContent.tsx to import and use RunTab
+- Replace placeholder with RunTab component for 'tester-run' case
+- Added comprehensive CSS styles in globals.css:
+  - .run-tab with flex column layout
+  - .run-header with model selector and status
+  - .model-selector styled like IDE controls
+  - .run-status with color-coded icons
+  - .run-prompt-area with input and button
+  - .prompt-input with focus/hover states
+  - .submit-button with accent color
+  - .run-output-area with placeholder
+  - All styles match IDE dark theme
+- TypeScript compilation passed
+- Build successful (843.9ms)
+
+[2026-01-14 17:40] Task 6.5: Implement run output area with trajectory display - COMPLETE
+- Created TrajectoryStepDisplay component inside RunTab
+- Display trajectory steps in chronological order from latestSession
+- Support 4 step types with different styling:
+  - 'message' (MessageSquare icon, blue left border)
+  - 'tool_call' (PlayCircle icon, gray left border)
+  - 'result' (CheckCircle2 icon, green left border)
+  - 'error' (AlertTriangle icon, red left border)
+- Each step shows:
+  - Header with icon, type label, and timestamp
+  - Content area with preformatted text
+- Format timestamps as HH:MM:SS
+- Handle empty states:
+  - Show placeholder when no prompt entered
+  - Show "Running..." when run is in progress
+  - Show "No trajectory data available" when completed but empty
+- Display trajectory list when status is 'completed' or 'failed'
+- Added comprehensive CSS styles in globals.css:
+  - .trajectory-list with flex column layout and gap
+  - .trajectory-step with border and border-radius
+  - Type-specific classes with colored left borders
+  - .trajectory-step-header with flex layout and background
+  - .trajectory-step-content with padding
+  - .trajectory-step-text with monospace font and pre-wrap
+  - Icon colors matching step types
+  - All styles match IDE dark theme
+- TypeScript compilation passed
+- Build successful (857.4ms)
+

@@ -49,7 +49,7 @@
         "Handle pause/resume simulation",
         "Export streaming utility for use in RunTab"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "6.4",
@@ -65,7 +65,7 @@
         "Add run status indicator (Ready, Running, Completed)",
         "Display initial state when no run has been executed"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "6.5",
