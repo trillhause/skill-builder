@@ -807,12 +807,11 @@ a {
 }
 
 .file-grid-item:hover {
-  background-color: var(--bg-hover);
+  background-color: var(--bg-tertiary);
 }
 
 .file-grid-item.selected {
   background-color: var(--bg-tertiary);
-  border: 1px solid var(--accent-primary);
 }
 
 .file-grid-icon {
