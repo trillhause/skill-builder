@@ -46,7 +46,7 @@
         "Add hover states for version items",
         "Keep click handler to open version-viewer tab"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.4",
