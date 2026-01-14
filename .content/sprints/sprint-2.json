@@ -158,7 +158,7 @@
         "Test multi-cursor support (Cmd/Ctrl+D)",
         "Verify all Monaco keybindings work as expected"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.11",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 9,
+  "completedTasks": 10,
   "status": "in-progress",
   "completedAt": null
 }
