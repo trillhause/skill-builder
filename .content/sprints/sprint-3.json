@@ -1,0 +1,257 @@
+{
+  "sprintId": 3,
+  "name": "VS Code Layout Restructure",
+  "goal": "Refactor from route-based navigation to VS Code-style three-pane workspace",
+  "tasks": [
+    {
+      "id": "3.1",
+      "category": "setup",
+      "description": "Define TypeScript interfaces for workspace state",
+      "steps": [
+        "Create src/types/workspace.ts",
+        "Define SidebarIcon type with 7 values: 'files' | 'graph' | 'terminal' | 'builder' | 'tester' | 'testsets' | 'analysis'",
+        "Define Tab interface with id, type, title, icon, and context-specific data",
+        "Define TabType union: 'editor' | 'version-viewer' | 'terminal' | 'builder-chat' | 'tester-run' | 'testset-manager' | 'analysis-manager'",
+        "Define WorkspaceState interface with activeSidebarIcon, tabs, activeTabId, currentVersion",
+        "Export all types for use across components"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.2",
+      "category": "setup",
+      "description": "Create WorkspaceContext for global state management",
+      "steps": [
+        "Create src/contexts/WorkspaceContext.tsx",
+        "Initialize default state with 'files' as active sidebar icon",
+        "Implement setActiveSidebarIcon action",
+        "Implement openTab action (prevents duplicates, focuses existing)",
+        "Implement closeTab action (handles active tab switching)",
+        "Implement setActiveTab action",
+        "Implement updateCurrentVersion action",
+        "Create useWorkspace custom hook for consuming context",
+        "Wrap provider with proper TypeScript typing"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.3",
+      "category": "functional",
+      "description": "Create IconStrip component for sidebar navigation",
+      "steps": [
+        "Create src/components/workspace/IconStrip.tsx",
+        "Import 7 icons from lucide-react: FolderTree, GitBranch, Terminal, Wrench, FlaskConical, TestTube, BarChart3",
+        "Render horizontal row of icon buttons",
+        "Apply active state styling (background highlight) for selected icon",
+        "Wire onClick to setActiveSidebarIcon from WorkspaceContext",
+        "Add tooltip/title attributes for accessibility",
+        "Style with consistent padding, hover states, and borders"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.4",
+      "category": "functional",
+      "description": "Create StatusBar component",
+      "steps": [
+        "Create src/components/workspace/StatusBar.tsx",
+        "Display current version from WorkspaceContext (e.g., 'Version 1')",
+        "Position at bottom of sidebar area",
+        "Style with subtle background, small text",
+        "Add version icon (GitCommit or similar)",
+        "Ensure text is readable and properly aligned"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.5",
+      "category": "functional",
+      "description": "Create DynamicSidebar component",
+      "steps": [
+        "Create src/components/workspace/DynamicSidebar.tsx",
+        "Include IconStrip at the top",
+        "Include content area that switches based on activeSidebarIcon",
+        "Include StatusBar at the bottom",
+        "Implement conditional rendering for 7 sidebar content types",
+        "Set fixed width (e.g., 250px) matching wireframe proportions",
+        "Add border separator between sidebar and workspace"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.6",
+      "category": "functional",
+      "description": "Create placeholder sidebar content components",
+      "steps": [
+        "Create src/components/sidebars/FilesSidebar.tsx (will integrate existing FileTree)",
+        "Create src/components/sidebars/GraphSidebar.tsx with placeholder version list",
+        "Create src/components/sidebars/TerminalSidebar.tsx with 'Global Session' item",
+        "Create src/components/sidebars/BuilderSidebar.tsx with placeholder threads list",
+        "Create src/components/sidebars/TesterSidebar.tsx with placeholder threads list",
+        "Create src/components/sidebars/TestSetsSidebar.tsx with placeholder sets list",
+        "Create src/components/sidebars/AnalysisSidebar.tsx with placeholder sets list",
+        "Each component should show header with title and + button where applicable",
+        "Add mock data for lists (2-3 items each)"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.7",
+      "category": "functional",
+      "description": "Integrate existing FileTree into FilesSidebar",
+      "steps": [
+        "Import existing FileTree component into FilesSidebar",
+        "Connect file click handler to WorkspaceContext openTab",
+        "Pass mock skill data to FileTree",
+        "Ensure expand/collapse still works",
+        "Style to fit within sidebar constraints",
+        "Verify file selection opens editor tab"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.8",
+      "category": "functional",
+      "description": "Create global TabBar component",
+      "steps": [
+        "Create src/components/workspace/TabBar.tsx",
+        "Render tabs from WorkspaceContext state",
+        "Display tab icon based on tab type",
+        "Display tab title with close button (X)",
+        "Highlight active tab with distinct styling",
+        "Handle tab click to set active tab",
+        "Handle close button click to close tab",
+        "Support horizontal scrolling for many tabs",
+        "Show empty state when no tabs open"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.9",
+      "category": "functional",
+      "description": "Create TabContent component for rendering active tab",
+      "steps": [
+        "Create src/components/workspace/TabContent.tsx",
+        "Switch rendering based on active tab type",
+        "Render MonacoEditor for 'editor' tabs",
+        "Render placeholder for 'version-viewer' tabs",
+        "Render placeholder for 'terminal' tabs",
+        "Render placeholder for 'builder-chat' tabs",
+        "Render placeholder for 'tester-run' tabs",
+        "Render placeholder for 'testset-manager' tabs",
+        "Render placeholder for 'analysis-manager' tabs",
+        "Show 'No tab selected' state when no active tab"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.10",
+      "category": "functional",
+      "description": "Create WorkspaceLayout orchestrator component",
+      "steps": [
+        "Create src/components/workspace/WorkspaceLayout.tsx",
+        "Layout: flex row with DynamicSidebar and main area",
+        "Main area: flex column with TabBar and TabContent",
+        "Ensure proper flex sizing (sidebar fixed, main flexible)",
+        "Add resize handle between sidebar and main (stretch goal)",
+        "Style borders and backgrounds per wireframes"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.11",
+      "category": "functional",
+      "description": "Refactor app to use single workspace page",
+      "steps": [
+        "Update src/app/page.tsx to render WorkspaceLayout",
+        "Wrap app with WorkspaceProvider in layout.tsx",
+        "Remove route-based navigation from layout",
+        "Delete or archive old route-based pages (files, versions, etc.)",
+        "Ensure WorkspaceContext is available globally",
+        "Update globals.css with workspace-specific styles"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.12",
+      "category": "functional",
+      "description": "Wire sidebar item clicks to open tabs",
+      "steps": [
+        "FilesSidebar: clicking file opens editor tab",
+        "GraphSidebar: clicking version opens version-viewer tab",
+        "TerminalSidebar: clicking 'Global Session' opens/focuses terminal tab",
+        "BuilderSidebar: clicking thread opens builder-chat tab",
+        "TesterSidebar: clicking thread opens tester-run tab",
+        "TestSetsSidebar: clicking set opens testset-manager tab",
+        "AnalysisSidebar: clicking set opens analysis-manager tab",
+        "Prevent duplicate tabs (focus existing instead)"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.13",
+      "category": "functional",
+      "description": "Test tab persistence across sidebar switches",
+      "steps": [
+        "Open a file from Files sidebar (creates editor tab)",
+        "Switch to Tester sidebar icon",
+        "Verify editor tab is still visible in TabBar",
+        "Click a thread in Tester (creates run tab)",
+        "Switch back to Files sidebar",
+        "Verify both tabs still exist",
+        "Verify clicking tabs switches active content correctly",
+        "Test closing tabs while on different sidebar icon"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.14",
+      "category": "functional",
+      "description": "Test multiple tab types coexisting",
+      "steps": [
+        "Open editor tab from Files sidebar",
+        "Open version-viewer tab from Graph sidebar",
+        "Open terminal tab from Terminal sidebar",
+        "Verify all 3 tabs visible in TabBar",
+        "Switch between tabs and verify correct content renders",
+        "Close middle tab and verify others remain",
+        "Verify active tab handling when closing active tab"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.15",
+      "category": "visual",
+      "description": "Visual polish matching wireframe layout",
+      "steps": [
+        "Verify IconStrip matches wireframe (horizontal, top of sidebar)",
+        "Verify sidebar width proportions match wireframe",
+        "Verify TabBar styling matches wireframe (tabs with x buttons)",
+        "Verify StatusBar positioning at sidebar bottom",
+        "Check hover states on icons, tabs, sidebar items",
+        "Ensure consistent dark theme throughout",
+        "Test layout at different viewport sizes",
+        "Verify no layout shifts when switching icons/tabs"
+      ],
+      "passes": true
+    },
+    {
+      "id": "3.16",
+      "category": "testing",
+      "description": "Build and verification",
+      "steps": [
+        "Run npm run build",
+        "Verify build completes without errors",
+        "Check for TypeScript type errors",
+        "Run npm run lint",
+        "Verify no linting errors",
+        "Test all passing conditions from sprint requirements",
+        "Document any known issues or limitations"
+      ],
+      "passes": true
+    }
+  ],
+  "totalTasks": 16,
+  "completedTasks": 16,
+  "status": "completed"
+}

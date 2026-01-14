@@ -1,0 +1,69 @@
+'use client';
+
+import { useWorkspace } from '@/contexts/WorkspaceContext';
+import {
+  FileTab,
+  BuilderTab,
+  TesterTab,
+  TerminalTab,
+  VersionTab,
+  TestSetTab,
+  AnalysisSetTab,
+  EditorTab
+} from '@/types/workspace';
+
+import FilesPageContent from '@/components/pages/FilesPageContent';
+import BuilderPageContent from '@/components/pages/BuilderPageContent';
+import TesterPageContent from '@/components/pages/TesterPageContent';
+import TerminalPageContent from '@/components/pages/TerminalPageContent';
+import VersionPageContent from '@/components/pages/VersionPageContent';
+import TestSetsPageContent from '@/components/pages/TestSetsPageContent';
+import AnalysisSetsPageContent from '@/components/pages/AnalysisSetsPageContent';
+import EditorPageContent from '@/components/pages/EditorPageContent';
+
+export default function ContentViewer() {
+  const { tabs, activeTabId } = useWorkspace();
+  const activeTab = tabs.find(t => t.id === activeTabId);
+
+  if (!activeTab) {
+    return (
+      <div className="content-viewer-empty">
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+          flexDirection: 'column',
+          gap: '12px',
+          color: 'var(--text-secondary)'
+        }}>
+          <h2 style={{ fontSize: '18px', fontWeight: 600 }}>Welcome to Skill Builder</h2>
+          <p style={{ fontSize: '14px' }}>
+            Click a navigation icon to get started
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  switch (activeTab.type) {
+    case 'file':
+      return <FilesPageContent tab={activeTab as FileTab} />;
+    case 'builder':
+      return <BuilderPageContent tab={activeTab as BuilderTab} />;
+    case 'tester':
+      return <TesterPageContent tab={activeTab as TesterTab} />;
+    case 'terminal':
+      return <TerminalPageContent tab={activeTab as TerminalTab} />;
+    case 'version':
+      return <VersionPageContent tab={activeTab as VersionTab} />;
+    case 'test-set':
+      return <TestSetsPageContent tab={activeTab as TestSetTab} />;
+    case 'analysis-set':
+      return <AnalysisSetsPageContent tab={activeTab as AnalysisSetTab} />;
+    case 'editor':
+      return <EditorPageContent tab={activeTab as EditorTab} />;
+    default:
+      return <div>Unknown tab type</div>;
+  }
+}

@@ -1,0 +1,20 @@
+'use client';
+
+import { VersionTab } from '@/types/workspace';
+
+interface VersionListSidebarProps {
+  tab: VersionTab;
+}
+
+export default function VersionListSidebar({ tab }: VersionListSidebarProps) {
+  return (
+    <div className="sidebar-content">
+      <div style={{ padding: '16px', color: 'var(--text-secondary)' }}>
+        <h4 style={{ marginBottom: '12px', fontSize: '13px', fontWeight: 600 }}>Versions</h4>
+        <p style={{ fontSize: '12px' }}>
+          Version list sidebar - coming soon
+        </p>
+      </div>
+    </div>
+  );
+}

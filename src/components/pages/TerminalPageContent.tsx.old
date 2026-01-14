@@ -1,0 +1,19 @@
+'use client';
+
+import { TerminalTab } from '@/types/workspace';
+
+interface TerminalPageContentProps {
+  tab: TerminalTab;
+}
+
+export default function TerminalPageContent({ tab }: TerminalPageContentProps) {
+  return (
+    <div className="placeholder-page">
+      <h1>Terminal</h1>
+      <p>Execute commands and view output</p>
+      <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+        Session: {tab.sessionId}
+      </p>
+    </div>
+  );
+}

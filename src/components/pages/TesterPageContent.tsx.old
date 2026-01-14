@@ -1,0 +1,19 @@
+'use client';
+
+import { TesterTab } from '@/types/workspace';
+
+interface TesterPageContentProps {
+  tab: TesterTab;
+}
+
+export default function TesterPageContent({ tab }: TesterPageContentProps) {
+  return (
+    <div className="placeholder-page">
+      <h1>Skill Tester</h1>
+      <p>Test and validate AI agent skills</p>
+      <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+        Tab: {tab.title}
+      </p>
+    </div>
+  );
+}

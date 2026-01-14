@@ -1,0 +1,80 @@
+'use client';
+
+import { useWorkspace } from '@/contexts/WorkspaceContext';
+import { TabType, Tab } from '@/types/workspace';
+import FileTreeSidebar from '@/components/sidebars/FileTreeSidebar';
+import BuilderThreadsSidebar from '@/components/sidebars/BuilderThreadsSidebar';
+import TesterThreadsSidebar from '@/components/sidebars/TesterThreadsSidebar';
+import TerminalSessionsSidebar from '@/components/sidebars/TerminalSessionsSidebar';
+import VersionListSidebar from '@/components/sidebars/VersionListSidebar';
+import TestSetsSidebar from '@/components/sidebars/TestSetsSidebar';
+import AnalysisSetsSidebar from '@/components/sidebars/AnalysisSetsSidebar';
+import EditorFilesSidebar from '@/components/sidebars/EditorFilesSidebar';
+
+const SIDEBAR_TITLES: Record<TabType, string> = {
+  'file': 'Explorer',
+  'builder': 'Threads',
+  'tester': 'Test Threads',
+  'terminal': 'Sessions',
+  'version': 'Versions',
+  'test-set': 'Test Sets',
+  'analysis-set': 'Analysis Sets',
+  'editor': 'Files'
+};
+
+export default function Sidebar() {
+  const { tabs, activeTabId, sidebarVisible, sidebarWidth } = useWorkspace();
+
+  if (!sidebarVisible) {
+    return null;
+  }
+
+  const activeTab = tabs.find(t => t.id === activeTabId);
+
+  if (!activeTab) {
+    return (
+      <div className="workspace-sidebar" style={{ width: `${sidebarWidth}px` }}>
+        <div className="sidebar-header">
+          <h3>No Active Tab</h3>
+        </div>
+        <div className="sidebar-content">
+          <div style={{ padding: '16px', color: 'var(--text-secondary)', fontSize: '13px' }}>
+            Open a tab to see sidebar content
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const renderSidebarContent = (tab: Tab) => {
+    switch (tab.type) {
+      case 'file':
+        return <FileTreeSidebar tab={tab} />;
+      case 'builder':
+        return <BuilderThreadsSidebar tab={tab} />;
+      case 'tester':
+        return <TesterThreadsSidebar tab={tab} />;
+      case 'terminal':
+        return <TerminalSessionsSidebar tab={tab} />;
+      case 'version':
+        return <VersionListSidebar tab={tab} />;
+      case 'test-set':
+        return <TestSetsSidebar tab={tab} />;
+      case 'analysis-set':
+        return <AnalysisSetsSidebar tab={tab} />;
+      case 'editor':
+        return <EditorFilesSidebar tab={tab} />;
+      default:
+        return <div>Unknown tab type</div>;
+    }
+  };
+
+  return (
+    <div className="workspace-sidebar" style={{ width: `${sidebarWidth}px` }}>
+      <div className="sidebar-header">
+        <h3>{SIDEBAR_TITLES[activeTab.type]}</h3>
+      </div>
+      {renderSidebarContent(activeTab)}
+    </div>
+  );
+}

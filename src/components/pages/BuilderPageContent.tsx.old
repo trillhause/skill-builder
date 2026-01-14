@@ -1,0 +1,19 @@
+'use client';
+
+import { BuilderTab } from '@/types/workspace';
+
+interface BuilderPageContentProps {
+  tab: BuilderTab;
+}
+
+export default function BuilderPageContent({ tab }: BuilderPageContentProps) {
+  return (
+    <div className="placeholder-page">
+      <h1>Skill Builder</h1>
+      <p>Create and configure AI agent skills</p>
+      <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+        Tab: {tab.title}
+      </p>
+    </div>
+  );
+}

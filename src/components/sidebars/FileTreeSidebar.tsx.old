@@ -1,0 +1,33 @@
+'use client';
+
+import FileTree from '@/components/FileTree';
+import { FileTab } from '@/types/workspace';
+import { mockSkillFolder, FileNode } from '@/data/mockSkillData';
+import { useWorkspace } from '@/contexts/WorkspaceContext';
+import { createFileTab } from '@/utils/tabFactories';
+
+interface FileTreeSidebarProps {
+  tab: FileTab;
+}
+
+export default function FileTreeSidebar({ tab }: FileTreeSidebarProps) {
+  const { openTab } = useWorkspace();
+
+  const handleFileClick = (file: FileNode) => {
+    if (file.type === 'file') {
+      const fileTab = createFileTab({
+        name: file.name,
+        path: file.path,
+        content: file.content || '',
+        language: file.language || 'text'
+      });
+      openTab(fileTab);
+    }
+  };
+
+  return (
+    <div className="sidebar-content">
+      <FileTree data={mockSkillFolder} onFileClick={handleFileClick} />
+    </div>
+  );
+}

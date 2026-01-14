@@ -1,0 +1,20 @@
+'use client';
+
+import { AnalysisSetTab } from '@/types/workspace';
+
+interface AnalysisSetsSidebarProps {
+  tab: AnalysisSetTab;
+}
+
+export default function AnalysisSetsSidebar({ tab }: AnalysisSetsSidebarProps) {
+  return (
+    <div className="sidebar-content">
+      <div style={{ padding: '16px', color: 'var(--text-secondary)' }}>
+        <h4 style={{ marginBottom: '12px', fontSize: '13px', fontWeight: 600 }}>Analysis Sets</h4>
+        <p style={{ fontSize: '12px' }}>
+          Analysis sets sidebar - coming soon
+        </p>
+      </div>
+    </div>
+  );
+}

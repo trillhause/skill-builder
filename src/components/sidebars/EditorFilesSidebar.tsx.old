@@ -1,0 +1,20 @@
+'use client';
+
+import { EditorTab } from '@/types/workspace';
+
+interface EditorFilesSidebarProps {
+  tab: EditorTab;
+}
+
+export default function EditorFilesSidebar({ tab }: EditorFilesSidebarProps) {
+  return (
+    <div className="sidebar-content">
+      <div style={{ padding: '16px', color: 'var(--text-secondary)' }}>
+        <h4 style={{ marginBottom: '12px', fontSize: '13px', fontWeight: 600 }}>Files</h4>
+        <p style={{ fontSize: '12px' }}>
+          Editor files sidebar - coming soon
+        </p>
+      </div>
+    </div>
+  );
+}

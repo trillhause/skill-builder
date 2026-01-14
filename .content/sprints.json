@@ -5,6 +5,7 @@
     {
       "id": 1,
       "name": "Project Setup & Navigation Shell",
+      "status": "complete",
       "goal": "Establish the project foundation with Next.js and create the global navigation structure",
       "requirements": [
         "Initialize Next.js project with TypeScript",
@@ -33,6 +34,7 @@
     {
       "id": 2,
       "name": "File Browser & Monaco Editor Integration",
+      "status": "complete",
       "goal": "Implement the file tree viewer and Monaco code editor with tab management",
       "requirements": [
         "Create file tree component displaying skill folder structure",
@@ -63,238 +65,249 @@
     },
     {
       "id": 3,
-      "name": "Version Graph View",
-      "goal": "Implement visual version timeline/tree for skill versioning",
+      "name": "VS Code Layout Restructure",
+      "status": "complete",
+      "goal": "Refactor from route-based navigation to VS Code-style three-pane workspace",
       "requirements": [
-        "Create version graph visualization component",
-        "Display versions as connected nodes in a tree structure",
-        "Current version indicator (green dot)",
-        "Click version to preview (read-only mode indicator)",
-        "\"Checkout Version\" button functionality (UI only)",
-        "Branching visualization support",
-        "Version metadata display (version number, created date)",
-        "Mock version history data with branching examples"
+        "Convert navigation from vertical 48px sidebar to horizontal icons at top of dynamic sidebar",
+        "Reduce icons from 8 to 7 (remove Editor - files open from File Browser)",
+        "Replace 8 routes with single workspace architecture",
+        "Implement dynamic sidebar that updates based on active icon",
+        "Create global tab management across all contexts (WorkspaceContext)",
+        "Ensure tabs persist when switching sidebar icons",
+        "Refactor existing FileTree/MonacoEditor/TabManager to work in new layout",
+        "Add status bar showing current version"
       ],
       "passingConditions": [
-        "Version graph renders with mock version data",
-        "Versions are displayed as connected nodes showing parent-child relationships",
-        "Current checked-out version has green dot indicator",
-        "Clicking a version shows preview state with 'Preview Only' indicator",
-        "Checkout button is visible for non-current versions",
-        "Branching is visually discernible in the graph",
-        "Version metadata (number, date) is displayed for each node"
+        "All 7 icons visible in horizontal strip at top of sidebar",
+        "Clicking icon switches sidebar content immediately",
+        "Clicking item in sidebar opens/focuses a tab",
+        "Tabs persist when switching between sidebar icons",
+        "File Browser + Monaco editor still work in new layout",
+        "Multiple tab types can coexist in tab bar",
+        "Status bar shows 'Current Version: V1'"
       ],
       "deliverables": [
-        "VersionGraph component with tree visualization",
-        "Version node component",
-        "Version preview panel",
+        "WorkspaceContext for global state",
+        "WorkspaceLayout component (orchestrates sidebar + tabs + content)",
+        "DynamicSidebar component with icon strip",
+        "Refactored Navigation as icon buttons",
+        "7 sidebar placeholder components",
+        "StatusBar component"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 4,
+      "name": "Version Graph View",
+      "status": "pending",
+      "goal": "Implement version list sidebar and read-only version viewer tab",
+      "requirements": [
+        "Version list in sidebar (vertical list: V8, V7, V6...)",
+        "Current version indicator (green badge)",
+        "Clicking version opens Read-only Viewer tab",
+        "Read-only tab shows file tree of that version snapshot",
+        "'Checkout this Version' button in viewer tab",
+        "Checkout action replaces working files with snapshot",
+        "Mock version history data"
+      ],
+      "passingConditions": [
+        "Clicking Graph icon shows version list in sidebar",
+        "Clicking a version opens read-only viewer tab",
+        "Viewer tab displays file tree of that version",
+        "Current version has green indicator",
+        "'Checkout' button loads that version into workspace",
+        "Multiple version tabs can be open simultaneously"
+      ],
+      "deliverables": [
+        "VersionListSidebar component",
+        "VersionViewerTab component (read-only file tree)",
         "Mock version history data"
       ],
       "estimatedDays": 2
     },
     {
-      "id": 4,
+      "id": 5,
       "name": "Terminal View",
-      "goal": "Create terminal interface for sandbox environment configuration",
+      "status": "pending",
+      "goal": "Implement terminal sidebar and terminal tab",
       "requirements": [
-        "Create terminal emulator component (xterm.js recommended)",
-        "Support for basic command input/output display",
-        "Terminal theming (dark theme to match IDE aesthetic)",
-        "Environment selector (Node, Bash)",
+        "Sidebar shows single item: 'Global Session'",
+        "Clicking opens/focuses Terminal tab",
+        "xterm.js terminal in main workspace tab",
+        "Dark theme matching IDE aesthetic",
+        "Environment selector (Node, Bash) in terminal tab header",
         "Mock command execution with simulated responses",
         "Command history support",
         "Clear terminal functionality"
       ],
       "passingConditions": [
-        "Terminal UI renders with proper styling",
-        "User can type commands in the terminal",
-        "Mock responses appear for common commands (ls, npm install, etc.)",
-        "Environment dropdown allows switching between Node and Bash",
+        "Terminal icon shows 'Global Session' in sidebar",
+        "Clicking opens Terminal tab",
+        "Terminal is singleton (clicking again focuses existing tab)",
+        "User can type commands, see mock responses",
+        "Environment dropdown switches between Node/Bash",
         "Up arrow cycles through command history",
-        "Clear command or button clears terminal output",
-        "Terminal maintains scroll position correctly"
+        "Clear command clears terminal output"
       ],
       "deliverables": [
-        "Terminal component with xterm.js integration",
-        "Mock command handler for simulated responses",
-        "Environment selector component"
+        "TerminalSidebar component",
+        "TerminalTab component with xterm.js",
+        "Mock command handler"
       ],
       "estimatedDays": 2
     },
     {
-      "id": 5,
-      "name": "Skill Tester View (Core UI)",
-      "goal": "Implement the Skill Tester interface for executing and viewing test runs",
+      "id": 6,
+      "name": "Skill Tester View",
+      "status": "pending",
+      "goal": "Implement tester sidebar with run threads and run tabs",
       "requirements": [
-        "Left sidebar with threads list (e.g., 'Figma Blog', 'Anthropic Blog')",
-        "Thread creation UI (new thread button and name input)",
-        "Model selection dropdown",
-        "Prompt input area (textarea)",
-        "Current skill version indicator",
-        "Run output display area",
-        "Expandable trajectory sections (collapsed by default)",
-        "Mock trajectory data showing tool calls, responses, intermediate steps",
-        "'Add run to Analysis Set' action button",
-        "'Add prompt to Test Set' action button"
+        "Sidebar lists run threads (e.g., 'Figma Blog Run', 'Anthropic Blog Run')",
+        "New Run button creates thread",
+        "Clicking thread opens/focuses Run tab",
+        "Run tab has: model selector, prompt input, output area",
+        "Expandable trajectory sections in output",
+        "Real-time streaming simulation",
+        "'Add to Analysis Set' action on run",
+        "'Add prompt to Test Set' action"
       ],
       "passingConditions": [
-        "Threads sidebar displays list of mock threads",
-        "Clicking a thread switches context (visual indication)",
-        "New thread can be created with custom name",
-        "Model dropdown shows available models (mock list)",
-        "Prompt can be typed in input area",
-        "Submit prompt triggers mock run (simulated loading state)",
-        "Run output displays with mock trajectory data",
-        "Trajectory sections expand/collapse on click",
-        "Action buttons for Analysis Set and Test Set are functional (UI feedback)"
+        "Tester icon shows run threads in sidebar",
+        "New thread can be created",
+        "Clicking thread opens Run tab",
+        "Submit prompt shows mock streaming output",
+        "Trajectory sections expand/collapse",
+        "Action buttons provide UI feedback"
       ],
       "deliverables": [
-        "SkillTester page component",
-        "ThreadsSidebar component",
-        "ModelSelector component",
-        "PromptInput component",
-        "RunOutput component with expandable trajectory",
-        "Mock run/trajectory data"
+        "TesterThreadsSidebar component",
+        "RunTab component",
+        "Mock streaming utility",
+        "Mock trajectory data"
       ],
       "estimatedDays": 3
     },
     {
-      "id": 6,
-      "name": "Test Sets View",
-      "goal": "Implement Test Sets management interface for batch testing",
-      "requirements": [
-        "Left sidebar with test set list (e.g., 'Eng Blogs', 'SaaS Blogs')",
-        "Test set creation UI",
-        "Main area showing prompts in selected test set",
-        "'New Prompt' button with prompt creation modal/form",
-        "'Trigger Runs' button with visual feedback",
-        "Prompt row display with edit/delete actions",
-        "Progress indicators for running tests (mock)",
-        "Mock test execution simulation"
-      ],
-      "passingConditions": [
-        "Test sets sidebar lists mock test sets",
-        "Clicking test set shows its prompts in main area",
-        "New test set can be created with name",
-        "New prompt can be added to selected test set",
-        "Prompts display in a list/table format",
-        "Trigger Runs button initiates mock batch execution",
-        "Progress indicators appear during mock execution",
-        "Prompts can be deleted from test set"
-      ],
-      "deliverables": [
-        "TestSets page component",
-        "TestSetsSidebar component",
-        "PromptList component",
-        "PromptForm modal/component",
-        "Mock test sets data"
-      ],
-      "estimatedDays": 2
-    },
-    {
       "id": 7,
-      "name": "Analysis Sets View",
-      "goal": "Implement Analysis Sets management for curating run collections",
+      "name": "Test Sets View",
+      "status": "pending",
+      "goal": "Implement test sets sidebar and manager tab with cross-navigation",
       "requirements": [
-        "Left sidebar with analysis set list",
-        "Analysis set creation UI",
-        "Main area showing runs in selected analysis set",
-        "Run display showing: prompt, timestamp, version used",
-        "'Add a Run' button with run selector modal",
-        "'Analyze Runs' button (links to Builder Agent)",
-        "'Suggest Changes' button",
-        "Run removal functionality"
+        "Sidebar lists test set collections",
+        "Create new test set",
+        "Clicking test set opens Test Set Manager tab",
+        "Manager tab shows prompts in that set",
+        "Add/edit/delete prompts",
+        "'Trigger Runs' button: (1) switches to Tester icon, (2) spawns N runs, (3) adds to Tester sidebar"
       ],
       "passingConditions": [
-        "Analysis sets sidebar lists mock analysis sets",
-        "Clicking analysis set shows its runs in main area",
-        "New analysis set can be created",
-        "Runs display with prompt, timestamp, and version info",
-        "'Add a Run' opens modal with available runs",
-        "Runs can be added to analysis set from modal",
-        "'Analyze Runs' button provides navigation feedback (to Builder)",
-        "Runs can be removed from analysis set"
+        "TestSets icon shows collection list",
+        "Clicking opens Test Set Manager tab",
+        "Prompts can be added/edited/deleted",
+        "'Trigger Runs' switches sidebar to Tester",
+        "N new run threads appear in Tester sidebar",
+        "Progress indicators show during batch execution"
       ],
       "deliverables": [
-        "AnalysisSets page component",
-        "AnalysisSetsSidebar component",
-        "RunsList component",
-        "RunSelector modal",
-        "Mock analysis sets and runs data"
+        "TestSetsSidebar component",
+        "TestSetManagerTab component",
+        "Cross-navigation logic (sidebar switching)"
       ],
       "estimatedDays": 2
     },
     {
       "id": 8,
-      "name": "Skill Builder View (Core UI)",
-      "goal": "Implement the Builder Agent chat interface for skill improvement suggestions",
+      "name": "Analysis Sets View",
+      "status": "pending",
+      "goal": "Implement analysis sets sidebar and manager tab with cross-navigation",
       "requirements": [
-        "Left sidebar with conversation threads list",
-        "New thread creation for Builder Agent",
-        "Chat interface layout (messages area + input)",
-        "'Select Runs or Analysis Set' button with selection modal",
-        "Message input and send functionality",
-        "Display of Builder Agent responses (mock)",
-        "Expandable sections for: Skill files fetched, Runs fetched, Suggested changes",
-        "Diff view for code change suggestions (mock)",
-        "'Accept Suggestion' button (UI only)"
+        "Sidebar lists analysis set collections",
+        "Create new analysis set",
+        "Clicking opens Analysis Set Manager tab",
+        "Manager tab shows runs in that set (prompt, timestamp, version)",
+        "Add/remove runs",
+        "'Analyze Runs' button: (1) switches to Builder icon, (2) creates new thread, (3) opens Chat tab with runs pre-loaded"
       ],
       "passingConditions": [
-        "Builder threads sidebar displays threads",
-        "New builder thread can be created",
-        "Chat messages display correctly (user and agent)",
-        "'Select Runs' button opens selection modal",
-        "Runs/Analysis sets can be selected for context",
-        "Sending message shows mock agent response",
-        "Expandable sections render with mock data",
-        "Diff view displays code change suggestions",
-        "'Accept Suggestion' provides UI feedback"
+        "Analysis icon shows collection list",
+        "Clicking opens Analysis Set Manager tab",
+        "Runs display with metadata",
+        "'Analyze Runs' switches sidebar to Builder",
+        "New Builder thread is created",
+        "Chat tab opens with selected runs in context"
       ],
       "deliverables": [
-        "SkillBuilder page component",
-        "BuilderThreadsSidebar component",
-        "ChatInterface component",
-        "RunSelector modal (reuse from Sprint 7)",
-        "DiffViewer component",
-        "ExpandableSection component",
-        "Mock builder conversation data"
+        "AnalysisSetsSidebar component",
+        "AnalysisSetManagerTab component",
+        "Cross-navigation logic"
       ],
-      "estimatedDays": 3
+      "estimatedDays": 2
     },
     {
       "id": 9,
-      "name": "State Management & Data Layer",
-      "goal": "Implement centralized state management and mock API layer",
+      "name": "Skill Builder View",
+      "status": "pending",
+      "goal": "Implement builder sidebar with threads and chat tabs",
       "requirements": [
-        "Set up state management solution (Zustand or React Context)",
-        "Define TypeScript interfaces matching spec data models",
-        "Create mock data store for all entities (Skills, Versions, Runs, TestSets, AnalysisSets, Threads)",
-        "Mock API service layer with simulated async operations",
-        "Wire all components to use centralized state",
-        "Implement auto-save simulation for editor changes",
-        "Cross-component state synchronization"
+        "Sidebar lists builder threads",
+        "New thread creation",
+        "Clicking thread opens Chat tab",
+        "Chat interface with message input",
+        "'Select Runs/Analysis Set' for context",
+        "Mock agent responses with inline diffs",
+        "Each diff has 'Apply' button",
+        "'Apply' updates working file and any open editor tabs"
       ],
       "passingConditions": [
-        "All TypeScript interfaces match spec data models exactly",
-        "State changes in one component reflect across dependent components",
-        "Mock API calls return appropriate data with simulated delays",
-        "Editor changes trigger auto-save state updates",
-        "Adding run to analysis set updates both views",
-        "Creating new test set appears in Test Sets sidebar immediately",
-        "Version checkout updates current version indicator across views"
+        "Builder icon shows thread list",
+        "New thread can be created",
+        "Chat tab displays user/agent messages",
+        "Agent response includes diff block",
+        "'Apply' button updates the working file",
+        "Open editor tabs refresh with applied changes"
       ],
       "deliverables": [
-        "State management setup (stores/contexts)",
-        "TypeScript interfaces for all data models",
-        "Mock data fixtures",
-        "Mock API service module",
-        "Updated components using centralized state"
+        "BuilderThreadsSidebar component",
+        "ChatTab component",
+        "InlineDiff component",
+        "Apply change logic"
       ],
       "estimatedDays": 3
     },
     {
       "id": 10,
+      "name": "State Management & Versioning",
+      "status": "pending",
+      "goal": "Centralized state management with dirty version logic",
+      "requirements": [
+        "Zustand store for all entities",
+        "TypeScript interfaces matching spec",
+        "Dirty version tracking (edits without save)",
+        "Snapshot on Run: creates new version, executes against it",
+        "Snapshot on explicit Save: creates new version",
+        "Version indicator updates in status bar",
+        "Cross-component state sync"
+      ],
+      "passingConditions": [
+        "Editing file marks version as 'dirty'",
+        "Clicking Run creates new version snapshot first",
+        "Manual Save creates new version",
+        "Status bar shows current version number",
+        "State changes reflect across all components"
+      ],
+      "deliverables": [
+        "Zustand store setup",
+        "Version snapshot logic",
+        "TypeScript interfaces",
+        "Updated components using store"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 11,
       "name": "Real-time Streaming Simulation",
+      "status": "pending",
       "goal": "Implement simulated real-time streaming for run output",
       "requirements": [
         "Simulate WebSocket-like streaming for run output",
@@ -321,8 +334,9 @@
       "estimatedDays": 2
     },
     {
-      "id": 11,
+      "id": 12,
       "name": "Backend API Foundation",
+      "status": "pending",
       "goal": "Implement real Next.js API routes with basic functionality",
       "requirements": [
         "Set up Next.js API routes structure",
@@ -352,8 +366,9 @@
       "estimatedDays": 3
     },
     {
-      "id": 12,
+      "id": 13,
       "name": "File Storage Integration",
+      "status": "pending",
       "goal": "Implement file storage for skills and version management",
       "requirements": [
         "Local file system storage for development (GCS-ready structure)",
@@ -380,8 +395,9 @@
       "estimatedDays": 3
     },
     {
-      "id": 13,
+      "id": 14,
       "name": "WebSocket Real-time Communication",
+      "status": "pending",
       "goal": "Implement real WebSocket server for run streaming",
       "requirements": [
         "Set up WebSocket server alongside Next.js",
@@ -408,8 +424,9 @@
       "estimatedDays": 3
     },
     {
-      "id": 14,
+      "id": 15,
       "name": "Agent SDK Integration (Tester Agent)",
+      "status": "pending",
       "goal": "Integrate Claude Agent SDK for skill testing",
       "requirements": [
         "Set up Claude Agent SDK",
@@ -438,8 +455,9 @@
       "estimatedDays": 4
     },
     {
-      "id": 15,
+      "id": 16,
       "name": "Agent SDK Integration (Builder Agent)",
+      "status": "pending",
       "goal": "Integrate Claude Agent SDK for skill improvements",
       "requirements": [
         "Implement Builder Agent execution",
@@ -466,8 +484,9 @@
       "estimatedDays": 4
     },
     {
-      "id": 16,
+      "id": 17,
       "name": "Polish & Integration Testing",
+      "status": "pending",
       "goal": "Final polish, bug fixes, and end-to-end testing",
       "requirements": [
         "End-to-end workflow testing (all key workflows from spec)",
@@ -479,9 +498,9 @@
         "Documentation of setup and usage"
       ],
       "passingConditions": [
-        "Create skill → test → improve → version workflow works end-to-end",
+        "Create skill -> test -> improve -> version workflow works end-to-end",
         "Test set batch execution works correctly",
-        "Analysis set curation → Builder suggestion works",
+        "Analysis set curation -> Builder suggestion works",
         "Version checkout and branching works correctly",
         "No critical bugs in core workflows",
         "UI is responsive and consistent",
@@ -496,37 +515,39 @@
       "estimatedDays": 3
     }
   ],
-  "totalEstimatedDays": 44,
+  "totalEstimatedDays": 47,
   "phases": {
     "phase1_frontend_shell": {
-      "sprints": [1, 2, 3, 4, 5, 6, 7, 8],
-      "description": "Complete frontend with mock data - all views functional with dummy API calls",
-      "estimatedDays": 19
+      "sprints": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "description": "Complete frontend with VS Code layout, mock data - all views functional as tabs with dynamic sidebar",
+      "estimatedDays": 22
     },
     "phase2_state_streaming": {
-      "sprints": [9, 10],
-      "description": "State management and simulated real-time features",
+      "sprints": [10, 11],
+      "description": "State management with dirty version logic and simulated real-time features",
       "estimatedDays": 5
     },
     "phase3_backend": {
-      "sprints": [11, 12, 13],
+      "sprints": [12, 13, 14],
       "description": "Real API, storage, and WebSocket implementation",
       "estimatedDays": 9
     },
     "phase4_agents": {
-      "sprints": [14, 15],
+      "sprints": [15, 16],
       "description": "Claude Agent SDK integration for both agents",
       "estimatedDays": 8
     },
     "phase5_polish": {
-      "sprints": [16],
+      "sprints": [17],
       "description": "Integration testing and final polish",
       "estimatedDays": 3
     }
   },
   "notes": {
-    "mvpCheckpoint": "After Sprint 10, you have a fully interactive frontend that can be used to test UX and iterate on design without backend dependencies",
+    "layoutChange": "Sprint 3 introduces the VS Code three-pane layout: horizontal icon bar at top of sidebar, dynamic sidebar content, global tab management",
+    "mvpCheckpoint": "After Sprint 11, you have a fully interactive frontend that can be used to test UX and iterate on design without backend dependencies",
     "frontendFirstRationale": "Starting with frontend allows rapid iteration on agent interaction patterns and UX before building backend infrastructure",
-    "parallelization": "Once Sprint 9 is complete, backend work (Sprints 11-13) could potentially run in parallel with agent integration planning"
+    "parallelization": "Once Sprint 10 is complete, backend work (Sprints 12-14) could potentially run in parallel with agent integration planning",
+    "crossNavigation": "Test Sets -> Tester and Analysis -> Builder cross-navigation implemented in Sprints 7-8"
   }
 }

@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import WorkspaceLayout from '@/components/workspace/WorkspaceLayout';
 
 export default function Home() {
-  redirect('/tester');
+  return <WorkspaceLayout />;
 }

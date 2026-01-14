@@ -266,3 +266,159 @@ All requirements met:
 ✓ Full Monaco editor functionality
 ✓ Visual polish and responsive layout
 ✓ Build and lint pass
+== Sprint 3: VS Code Layout Restructure ==
+
+[2026-01-14 11:15] Task 3.1: Define TypeScript interfaces - COMPLETE
+- Created src/types/workspace.ts with Sprint 3 spec
+- Defined SidebarIcon type: 'files' | 'graph' | 'terminal' | 'builder' | 'tester' | 'testsets' | 'analysis'
+- Defined TabType union: 'editor' | 'version-viewer' | 'terminal' | 'builder-chat' | 'tester-run' | 'testset-manager' | 'analysis-manager'
+- Defined Tab interface with id, type, title, icon, and context-specific data (path, content, language, versionId, sessionId, threadId, setId)
+- Defined WorkspaceState interface with activeSidebarIcon, tabs, activeTabId, currentVersion
+- Defined WorkspaceActions interface with setActiveSidebarIcon, openTab, closeTab, setActiveTab, updateCurrentVersion
+- All types properly exported for use across components
+
+[2026-01-14 11:16] Task 3.2: Create WorkspaceContext - COMPLETE
+- Created src/contexts/WorkspaceContext.tsx with global state management
+- Initialized default state with 'files' as active sidebar icon and 'Version 1' as current version
+- Implemented setActiveSidebarIcon action
+- Implemented openTab action (prevents duplicates by path, focuses existing tabs)
+- Implemented closeTab action (handles active tab switching when closing)
+- Implemented setActiveTab action for switching between tabs
+- Implemented updateCurrentVersion action
+- Created useWorkspace custom hook for consuming context
+- Wrapped provider with proper TypeScript typing
+
+[2026-01-14 11:17] Task 3.3: Create IconStrip component - COMPLETE
+- Created src/components/workspace/IconStrip.tsx
+- Imported 7 icons from lucide-react: FolderTree, GitBranch, Terminal, Wrench, FlaskConical, TestTube, BarChart3
+- Rendered horizontal row of icon buttons (32x32px)
+- Applied active state styling (blue background) for selected icon
+- Wired onClick to setActiveSidebarIcon from WorkspaceContext
+- Added title attributes for accessibility
+- Styled with consistent padding, hover states (gray background)
+
+[2026-01-14 11:18] Task 3.4: Create StatusBar component - COMPLETE
+- Created src/components/workspace/StatusBar.tsx
+- Displays current version from WorkspaceContext (e.g., 'Version 1')
+- Positioned at bottom of sidebar area
+- Styled with tertiary background, small text (12px)
+- Added GitCommit icon from lucide-react
+- Text is readable with monospace font and proper alignment
+
+[2026-01-14 11:19] Task 3.5: Create DynamicSidebar component - COMPLETE
+- Created src/components/workspace/DynamicSidebar.tsx
+- Includes IconStrip at the top
+- Includes sidebar-content-area that switches based on activeSidebarIcon
+- Includes StatusBar at the bottom
+- Implements conditional rendering for 7 sidebar content types
+- Set fixed width (250px) matching wireframe proportions
+- Added border separator between sidebar and workspace
+
+[2026-01-14 11:20] Task 3.6: Create placeholder sidebar content components - COMPLETE
+- Created src/components/sidebars/FilesSidebar.tsx (integrates existing FileTree)
+- Created src/components/sidebars/GraphSidebar.tsx with placeholder version list (3 versions)
+- Created src/components/sidebars/TerminalSidebar.tsx with 'Global Session' item
+- Created src/components/sidebars/BuilderSidebar.tsx with placeholder threads list (3 threads)
+- Created src/components/sidebars/TesterSidebar.tsx with placeholder threads list (3 test threads)
+- Created src/components/sidebars/TestSetsSidebar.tsx with placeholder sets list (3 sets)
+- Created src/components/sidebars/AnalysisSidebar.tsx with placeholder sets list (3 analysis sets)
+- Each component shows header with title and + button where applicable
+- Added mock data for lists (2-3 items each)
+- Wired click handlers to openTab action with appropriate tab types
+
+[2026-01-14 11:21] Task 3.7: Integrate existing FileTree - COMPLETE
+- Imported existing FileTree component into FilesSidebar
+- Connected file click handler to WorkspaceContext openTab
+- Passes mockSkillFolder data to FileTree
+- Expand/collapse functionality still works
+- Styled to fit within sidebar constraints
+- File selection opens editor tab with content, path, language
+
+[2026-01-14 11:22] Task 3.8: Create global TabBar component - COMPLETE
+- Created src/components/workspace/TabBar.tsx
+- Renders tabs from WorkspaceContext state
+- Displays tab icon based on tab type (FileText, GitBranch, Terminal, Wrench, FlaskConical, TestTube, BarChart3)
+- Displays tab title with close button (X)
+- Highlights active tab with primary background and blue border
+- Handles tab click to set active tab
+- Handles close button click to close tab
+- Supports horizontal scrolling for many tabs
+- Shows null state when no tabs open (component returns null)
+
+[2026-01-14 11:23] Task 3.9: Create TabContent component - COMPLETE
+- Created src/components/workspace/TabContent.tsx
+- Switches rendering based on active tab type
+- Renders MonacoEditor for 'editor' tabs with file path header
+- Renders placeholder for 'version-viewer' tabs
+- Renders placeholder for 'terminal' tabs
+- Renders placeholder for 'builder-chat' tabs
+- Renders placeholder for 'tester-run' tabs
+- Renders placeholder for 'testset-manager' tabs
+- Renders placeholder for 'analysis-manager' tabs
+- Shows 'No tab selected' state when no active tab
+
+[2026-01-14 11:24] Task 3.10: Create WorkspaceLayout orchestrator - COMPLETE
+- Created src/components/workspace/WorkspaceLayout.tsx
+- Layout: flex row with DynamicSidebar (250px fixed) and workspace-main (flexible)
+- Main area: flex column with TabBar and workspace-content
+- Proper flex sizing (sidebar fixed, main flexible)
+- Styled borders and backgrounds per wireframes
+- All components properly integrated
+
+[2026-01-14 11:25] Task 3.11: Refactor app to use single workspace page - COMPLETE
+- Updated src/app/page.tsx to render WorkspaceLayout
+- Wrapped app with WorkspaceProvider in layout.tsx
+- Removed Navigation component and route-based navigation from layout
+- Archived old route-based components (renamed to .old):
+  - ContentViewer.tsx.old, Sidebar.tsx.old
+  - All PageContent components in src/components/pages/
+  - Old sidebar components (FileTreeSidebar, BuilderThreadsSidebar, etc.)
+- WorkspaceContext available globally via provider
+- Added comprehensive CSS in globals.css for workspace-specific styles:
+  - workspace-layout, dynamic-sidebar, icon-strip
+  - status-bar, sidebar-content-area, sidebar-header, sidebar-list
+  - tab-content-empty, tab-content-editor, tab-content-placeholder
+
+[2026-01-14 11:26] Tasks 3.12-3.15: Sidebar item clicks and visual polish - COMPLETE
+- FilesSidebar: clicking file opens editor tab with full file content
+- GraphSidebar: clicking version opens version-viewer tab
+- TerminalSidebar: clicking 'Global Session' opens/focuses terminal tab
+- BuilderSidebar: clicking thread opens builder-chat tab
+- TesterSidebar: clicking thread opens tester-run tab
+- TestSetsSidebar: clicking set opens testset-manager tab
+- AnalysisSidebar: clicking set opens analysis-manager tab
+- Duplicate tab prevention working (focus existing tab)
+- Tabs persist across sidebar icon switches
+- Multiple tab types can coexist
+- Icon strip matches wireframe (horizontal, top of sidebar)
+- Sidebar width matches wireframe proportions (250px)
+- TabBar styling matches wireframe (tabs with X buttons)
+- StatusBar positioned at sidebar bottom
+- Hover states on icons, tabs, sidebar items working
+- Consistent dark theme throughout
+- Layout responsive and no shifts when switching
+
+[2026-01-14 11:27] Task 3.16: Build and verification - COMPLETE
+- npm run build: SUCCESS (compiled in 772.0ms)
+- TypeScript compilation: PASSED (no errors)
+- All 12 routes generated successfully
+- No linting errors
+
+Sprint 3 Status: COMPLETE
+All requirements met:
+✓ TypeScript interfaces defined for workspace state
+✓ WorkspaceContext with global state management
+✓ IconStrip component for sidebar navigation (7 icons)
+✓ StatusBar component showing current version
+✓ DynamicSidebar with conditional content rendering
+✓ 7 placeholder sidebar content components
+✓ Existing FileTree integrated into FilesSidebar
+✓ Global TabBar component with icons and close buttons
+✓ TabContent component for rendering active tab
+✓ WorkspaceLayout orchestrator component
+✓ App refactored to use single workspace page
+✓ Sidebar item clicks wire to open tabs
+✓ Tab persistence across sidebar switches
+✓ Multiple tab types coexist properly
+✓ Visual polish matching wireframe layout
+✓ Build and verification pass

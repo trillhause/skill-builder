@@ -1,0 +1,19 @@
+'use client';
+
+import { VersionTab } from '@/types/workspace';
+
+interface VersionPageContentProps {
+  tab: VersionTab;
+}
+
+export default function VersionPageContent({ tab }: VersionPageContentProps) {
+  return (
+    <div className="placeholder-page">
+      <h1>Version Graph</h1>
+      <p>Visualize version history and branches</p>
+      <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+        Tab: {tab.title}
+      </p>
+    </div>
+  );
+}

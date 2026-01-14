@@ -1,0 +1,19 @@
+'use client';
+
+import { AnalysisSetTab } from '@/types/workspace';
+
+interface AnalysisSetsPageContentProps {
+  tab: AnalysisSetTab;
+}
+
+export default function AnalysisSetsPageContent({ tab }: AnalysisSetsPageContentProps) {
+  return (
+    <div className="placeholder-page">
+      <h1>Analysis Sets</h1>
+      <p>Analyze and compare test results</p>
+      <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+        Tab: {tab.title}
+      </p>
+    </div>
+  );
+}

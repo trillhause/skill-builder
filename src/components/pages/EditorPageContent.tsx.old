@@ -1,0 +1,19 @@
+'use client';
+
+import { EditorTab } from '@/types/workspace';
+
+interface EditorPageContentProps {
+  tab: EditorTab;
+}
+
+export default function EditorPageContent({ tab }: EditorPageContentProps) {
+  return (
+    <div className="placeholder-page">
+      <h1>Editor</h1>
+      <p>Generic text editor</p>
+      <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+        Tab: {tab.title}
+      </p>
+    </div>
+  );
+}

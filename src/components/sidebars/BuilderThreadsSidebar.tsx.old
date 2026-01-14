@@ -1,0 +1,21 @@
+'use client';
+
+import { BuilderTab } from '@/types/workspace';
+
+interface BuilderThreadsSidebarProps {
+  tab: BuilderTab;
+}
+
+export default function BuilderThreadsSidebar({ tab }: BuilderThreadsSidebarProps) {
+  return (
+    <div className="sidebar-content">
+      <div style={{ padding: '16px', color: 'var(--text-secondary)' }}>
+        <h4 style={{ marginBottom: '12px', fontSize: '13px', fontWeight: 600 }}>Threads</h4>
+        <p style={{ fontSize: '12px' }}>
+          Builder threads sidebar - coming soon
+        </p>
+        {/* TODO: Implement thread list with checkboxes per wireframe */}
+      </div>
+    </div>
+  );
+}

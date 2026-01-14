@@ -1,0 +1,19 @@
+'use client';
+
+import { TestSetTab } from '@/types/workspace';
+
+interface TestSetsPageContentProps {
+  tab: TestSetTab;
+}
+
+export default function TestSetsPageContent({ tab }: TestSetsPageContentProps) {
+  return (
+    <div className="placeholder-page">
+      <h1>Test Sets</h1>
+      <p>Manage and organize test sets</p>
+      <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+        Tab: {tab.title}
+      </p>
+    </div>
+  );
+}

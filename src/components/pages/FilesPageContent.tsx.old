@@ -1,0 +1,35 @@
+'use client';
+
+import MonacoEditor from '@/components/MonacoEditor';
+import { FileTab } from '@/types/workspace';
+
+interface FilesPageContentProps {
+  tab: FileTab;
+}
+
+export default function FilesPageContent({ tab }: FilesPageContentProps) {
+  if (!tab.path || !tab.content) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+          color: 'var(--text-secondary)'
+        }}
+      >
+        Select a file to view its contents
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ flex: 1, height: '100%' }}>
+      <MonacoEditor
+        content={tab.content}
+        language={tab.language}
+      />
+    </div>
+  );
+}
