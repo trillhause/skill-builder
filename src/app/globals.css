@@ -248,6 +248,24 @@ a {
   width: 100%;
 }
 
+/* Read-Only File Tree Component */
+.readonly-file-tree .file-tree-row.readonly-file {
+  cursor: default;
+  opacity: 0.9;
+}
+
+.readonly-file-tree .file-tree-row.readonly-file:hover {
+  background-color: transparent;
+}
+
+.readonly-file-tree .file-tree-icon .file-icon {
+  color: var(--text-secondary);
+}
+
+.readonly-file-tree .file-tree-name {
+  color: var(--text-secondary);
+}
+
 /* Tab Manager Component */
 .tab-manager {
   width: 100%;

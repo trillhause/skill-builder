@@ -16,7 +16,7 @@
         "Set up parent-child relationships for version tree",
         "Export mock data and helper functions"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.2",
