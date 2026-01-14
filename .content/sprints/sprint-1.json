@@ -1,0 +1,156 @@
+{
+  "sprintId": 1,
+  "name": "Project Setup & Navigation Shell",
+  "goal": "Establish the project foundation with Next.js and create the global navigation structure",
+  "tasks": [
+    {
+      "id": "1.1",
+      "category": "setup",
+      "description": "Initialize Next.js project with TypeScript and App Router",
+      "steps": [
+        "Run npx create-next-app with TypeScript template",
+        "Verify project structure uses App Router (app/ directory)",
+        "Confirm TypeScript configuration is present (tsconfig.json)",
+        "Run npm run dev successfully",
+        "Verify default Next.js page loads at localhost:3000"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.2",
+      "category": "setup",
+      "description": "Configure project structure and dependencies",
+      "steps": [
+        "Create folder structure: components/, lib/, types/, stores/",
+        "Install core dependencies (if needed): lucide-react for icons",
+        "Set up base CSS with CSS variables for theming",
+        "Configure path aliases in tsconfig.json (@/ for src)",
+        "Verify imports work with @ prefix"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.3",
+      "category": "functional",
+      "description": "Create global layout with persistent navigation toolbar",
+      "steps": [
+        "Create app/layout.tsx with root layout structure",
+        "Add navigation toolbar container (fixed position, left or top)",
+        "Define base styles for layout (full viewport, flex layout)",
+        "Verify layout persists across all routes",
+        "Check toolbar remains visible during navigation"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.4",
+      "category": "functional",
+      "description": "Implement navigation icons for all 8 primary views",
+      "steps": [
+        "Add icon for File Browser view",
+        "Add icon for Version Graph view",
+        "Add icon for Terminal view",
+        "Add icon for Skill Builder view",
+        "Add icon for Skill Tester view",
+        "Add icon for Test Sets view",
+        "Add icon for Analysis Sets view",
+        "Add icon for Editor/Tabs view",
+        "Verify all 8 icons render correctly with tooltips"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.5",
+      "category": "functional",
+      "description": "Create placeholder page components for each view",
+      "steps": [
+        "Create app/files/page.tsx (File Browser)",
+        "Create app/versions/page.tsx (Version Graph)",
+        "Create app/terminal/page.tsx (Terminal)",
+        "Create app/builder/page.tsx (Skill Builder)",
+        "Create app/tester/page.tsx (Skill Tester)",
+        "Create app/test-sets/page.tsx (Test Sets)",
+        "Create app/analysis-sets/page.tsx (Analysis Sets)",
+        "Create app/editor/page.tsx (Editor Tabs)",
+        "Verify each page renders with placeholder content"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.6",
+      "category": "functional",
+      "description": "Navigation routing works for all views",
+      "steps": [
+        "Click File Browser icon - navigates to /files",
+        "Click Version Graph icon - navigates to /versions",
+        "Click Terminal icon - navigates to /terminal",
+        "Click Skill Builder icon - navigates to /builder",
+        "Click Skill Tester icon - navigates to /tester",
+        "Click Test Sets icon - navigates to /test-sets",
+        "Click Analysis Sets icon - navigates to /analysis-sets",
+        "Click Editor icon - navigates to /editor",
+        "Browser back/forward navigation works correctly"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.7",
+      "category": "functional",
+      "description": "Active navigation item is visually highlighted",
+      "steps": [
+        "Navigate to /files - File Browser icon shows active state",
+        "Navigate to /versions - Version Graph icon shows active state",
+        "Navigate to /terminal - Terminal icon shows active state",
+        "Navigate to /builder - Skill Builder icon shows active state",
+        "Navigate to /tester - Skill Tester icon shows active state",
+        "Navigate to /test-sets - Test Sets icon shows active state",
+        "Navigate to /analysis-sets - Analysis Sets icon shows active state",
+        "Navigate to /editor - Editor icon shows active state",
+        "Only one icon is highlighted at a time"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.8",
+      "category": "visual",
+      "description": "Layout maintains structure across all views",
+      "steps": [
+        "Toolbar remains fixed position during scroll",
+        "Main content area fills remaining space",
+        "Layout works at 1920x1080 resolution",
+        "Layout works at 1366x768 resolution",
+        "No horizontal scrollbars appear on standard viewports",
+        "Icons maintain consistent sizing and spacing"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.9",
+      "category": "visual",
+      "description": "Dark theme IDE aesthetic applied",
+      "steps": [
+        "Background uses dark color palette",
+        "Navigation toolbar has subtle contrast from main area",
+        "Icons use appropriate contrast for visibility",
+        "Hover states provide visual feedback",
+        "Active states are clearly distinguishable",
+        "Typography is readable against dark background"
+      ],
+      "passes": true
+    },
+    {
+      "id": "1.10",
+      "category": "functional",
+      "description": "Default route redirects to primary view",
+      "steps": [
+        "Navigate to root URL (localhost:3000)",
+        "Verify redirect to /tester (primary testing view) or appropriate default",
+        "Corresponding icon shows active state after redirect"
+      ],
+      "passes": true
+    }
+  ],
+  "totalTasks": 10,
+  "completedTasks": 10,
+  "status": "completed"
+}

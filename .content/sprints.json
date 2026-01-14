@@ -1,0 +1,532 @@
+{
+  "projectName": "Skill Builder UI",
+  "approach": "Frontend-first with dummy data/mock APIs to enable rapid UI iteration and early testing of agent workflows",
+  "sprints": [
+    {
+      "id": 1,
+      "name": "Project Setup & Navigation Shell",
+      "goal": "Establish the project foundation with Next.js and create the global navigation structure",
+      "requirements": [
+        "Initialize Next.js project with TypeScript",
+        "Configure project structure following Next.js App Router conventions",
+        "Create global layout with persistent navigation toolbar",
+        "Implement icon-based navigation for all 8 primary views: File Browser, Version Graph, Terminal, Skill Builder, Skill Tester, Test Sets, Analysis Sets, Editor Tabs",
+        "Create placeholder page components for each view",
+        "Navigation state management (active view highlighting)",
+        "Basic responsive layout foundation"
+      ],
+      "passingConditions": [
+        "Running `npm run dev` starts the application without errors",
+        "All 8 navigation icons are visible in the toolbar",
+        "Clicking each icon routes to its respective placeholder page",
+        "Active navigation item is visually highlighted",
+        "Layout maintains structure across all views"
+      ],
+      "deliverables": [
+        "Next.js project with TypeScript configuration",
+        "Global layout component with navigation toolbar",
+        "8 placeholder page/view components",
+        "Basic CSS/styling foundation"
+      ],
+      "estimatedDays": 2
+    },
+    {
+      "id": 2,
+      "name": "File Browser & Monaco Editor Integration",
+      "goal": "Implement the file tree viewer and Monaco code editor with tab management",
+      "requirements": [
+        "Create file tree component displaying skill folder structure",
+        "Implement tree navigation (expand/collapse folders)",
+        "Integrate Monaco Editor for code editing",
+        "Implement tab system for multiple open files",
+        "Click file in tree opens it in new editor tab",
+        "Syntax highlighting based on file type (markdown, javascript, python, etc.)",
+        "Create mock skill folder data with Skill.md and sample scripts",
+        "Visual indication of currently active tab"
+      ],
+      "passingConditions": [
+        "File tree displays mock skill folder structure",
+        "Folders can be expanded and collapsed",
+        "Clicking a file opens it in Monaco editor tab",
+        "Multiple files can be open simultaneously as tabs",
+        "Switching tabs shows correct file content",
+        "Syntax highlighting works for .md, .js, .py, and .ts files",
+        "Monaco editor is fully functional (typing, selection, undo/redo)"
+      ],
+      "deliverables": [
+        "FileTree component with expand/collapse functionality",
+        "MonacoEditor wrapper component",
+        "TabManager component for multi-file editing",
+        "Mock skill data (Skill.md, sample scripts)"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 3,
+      "name": "Version Graph View",
+      "goal": "Implement visual version timeline/tree for skill versioning",
+      "requirements": [
+        "Create version graph visualization component",
+        "Display versions as connected nodes in a tree structure",
+        "Current version indicator (green dot)",
+        "Click version to preview (read-only mode indicator)",
+        "\"Checkout Version\" button functionality (UI only)",
+        "Branching visualization support",
+        "Version metadata display (version number, created date)",
+        "Mock version history data with branching examples"
+      ],
+      "passingConditions": [
+        "Version graph renders with mock version data",
+        "Versions are displayed as connected nodes showing parent-child relationships",
+        "Current checked-out version has green dot indicator",
+        "Clicking a version shows preview state with 'Preview Only' indicator",
+        "Checkout button is visible for non-current versions",
+        "Branching is visually discernible in the graph",
+        "Version metadata (number, date) is displayed for each node"
+      ],
+      "deliverables": [
+        "VersionGraph component with tree visualization",
+        "Version node component",
+        "Version preview panel",
+        "Mock version history data"
+      ],
+      "estimatedDays": 2
+    },
+    {
+      "id": 4,
+      "name": "Terminal View",
+      "goal": "Create terminal interface for sandbox environment configuration",
+      "requirements": [
+        "Create terminal emulator component (xterm.js recommended)",
+        "Support for basic command input/output display",
+        "Terminal theming (dark theme to match IDE aesthetic)",
+        "Environment selector (Node, Bash)",
+        "Mock command execution with simulated responses",
+        "Command history support",
+        "Clear terminal functionality"
+      ],
+      "passingConditions": [
+        "Terminal UI renders with proper styling",
+        "User can type commands in the terminal",
+        "Mock responses appear for common commands (ls, npm install, etc.)",
+        "Environment dropdown allows switching between Node and Bash",
+        "Up arrow cycles through command history",
+        "Clear command or button clears terminal output",
+        "Terminal maintains scroll position correctly"
+      ],
+      "deliverables": [
+        "Terminal component with xterm.js integration",
+        "Mock command handler for simulated responses",
+        "Environment selector component"
+      ],
+      "estimatedDays": 2
+    },
+    {
+      "id": 5,
+      "name": "Skill Tester View (Core UI)",
+      "goal": "Implement the Skill Tester interface for executing and viewing test runs",
+      "requirements": [
+        "Left sidebar with threads list (e.g., 'Figma Blog', 'Anthropic Blog')",
+        "Thread creation UI (new thread button and name input)",
+        "Model selection dropdown",
+        "Prompt input area (textarea)",
+        "Current skill version indicator",
+        "Run output display area",
+        "Expandable trajectory sections (collapsed by default)",
+        "Mock trajectory data showing tool calls, responses, intermediate steps",
+        "'Add run to Analysis Set' action button",
+        "'Add prompt to Test Set' action button"
+      ],
+      "passingConditions": [
+        "Threads sidebar displays list of mock threads",
+        "Clicking a thread switches context (visual indication)",
+        "New thread can be created with custom name",
+        "Model dropdown shows available models (mock list)",
+        "Prompt can be typed in input area",
+        "Submit prompt triggers mock run (simulated loading state)",
+        "Run output displays with mock trajectory data",
+        "Trajectory sections expand/collapse on click",
+        "Action buttons for Analysis Set and Test Set are functional (UI feedback)"
+      ],
+      "deliverables": [
+        "SkillTester page component",
+        "ThreadsSidebar component",
+        "ModelSelector component",
+        "PromptInput component",
+        "RunOutput component with expandable trajectory",
+        "Mock run/trajectory data"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 6,
+      "name": "Test Sets View",
+      "goal": "Implement Test Sets management interface for batch testing",
+      "requirements": [
+        "Left sidebar with test set list (e.g., 'Eng Blogs', 'SaaS Blogs')",
+        "Test set creation UI",
+        "Main area showing prompts in selected test set",
+        "'New Prompt' button with prompt creation modal/form",
+        "'Trigger Runs' button with visual feedback",
+        "Prompt row display with edit/delete actions",
+        "Progress indicators for running tests (mock)",
+        "Mock test execution simulation"
+      ],
+      "passingConditions": [
+        "Test sets sidebar lists mock test sets",
+        "Clicking test set shows its prompts in main area",
+        "New test set can be created with name",
+        "New prompt can be added to selected test set",
+        "Prompts display in a list/table format",
+        "Trigger Runs button initiates mock batch execution",
+        "Progress indicators appear during mock execution",
+        "Prompts can be deleted from test set"
+      ],
+      "deliverables": [
+        "TestSets page component",
+        "TestSetsSidebar component",
+        "PromptList component",
+        "PromptForm modal/component",
+        "Mock test sets data"
+      ],
+      "estimatedDays": 2
+    },
+    {
+      "id": 7,
+      "name": "Analysis Sets View",
+      "goal": "Implement Analysis Sets management for curating run collections",
+      "requirements": [
+        "Left sidebar with analysis set list",
+        "Analysis set creation UI",
+        "Main area showing runs in selected analysis set",
+        "Run display showing: prompt, timestamp, version used",
+        "'Add a Run' button with run selector modal",
+        "'Analyze Runs' button (links to Builder Agent)",
+        "'Suggest Changes' button",
+        "Run removal functionality"
+      ],
+      "passingConditions": [
+        "Analysis sets sidebar lists mock analysis sets",
+        "Clicking analysis set shows its runs in main area",
+        "New analysis set can be created",
+        "Runs display with prompt, timestamp, and version info",
+        "'Add a Run' opens modal with available runs",
+        "Runs can be added to analysis set from modal",
+        "'Analyze Runs' button provides navigation feedback (to Builder)",
+        "Runs can be removed from analysis set"
+      ],
+      "deliverables": [
+        "AnalysisSets page component",
+        "AnalysisSetsSidebar component",
+        "RunsList component",
+        "RunSelector modal",
+        "Mock analysis sets and runs data"
+      ],
+      "estimatedDays": 2
+    },
+    {
+      "id": 8,
+      "name": "Skill Builder View (Core UI)",
+      "goal": "Implement the Builder Agent chat interface for skill improvement suggestions",
+      "requirements": [
+        "Left sidebar with conversation threads list",
+        "New thread creation for Builder Agent",
+        "Chat interface layout (messages area + input)",
+        "'Select Runs or Analysis Set' button with selection modal",
+        "Message input and send functionality",
+        "Display of Builder Agent responses (mock)",
+        "Expandable sections for: Skill files fetched, Runs fetched, Suggested changes",
+        "Diff view for code change suggestions (mock)",
+        "'Accept Suggestion' button (UI only)"
+      ],
+      "passingConditions": [
+        "Builder threads sidebar displays threads",
+        "New builder thread can be created",
+        "Chat messages display correctly (user and agent)",
+        "'Select Runs' button opens selection modal",
+        "Runs/Analysis sets can be selected for context",
+        "Sending message shows mock agent response",
+        "Expandable sections render with mock data",
+        "Diff view displays code change suggestions",
+        "'Accept Suggestion' provides UI feedback"
+      ],
+      "deliverables": [
+        "SkillBuilder page component",
+        "BuilderThreadsSidebar component",
+        "ChatInterface component",
+        "RunSelector modal (reuse from Sprint 7)",
+        "DiffViewer component",
+        "ExpandableSection component",
+        "Mock builder conversation data"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 9,
+      "name": "State Management & Data Layer",
+      "goal": "Implement centralized state management and mock API layer",
+      "requirements": [
+        "Set up state management solution (Zustand or React Context)",
+        "Define TypeScript interfaces matching spec data models",
+        "Create mock data store for all entities (Skills, Versions, Runs, TestSets, AnalysisSets, Threads)",
+        "Mock API service layer with simulated async operations",
+        "Wire all components to use centralized state",
+        "Implement auto-save simulation for editor changes",
+        "Cross-component state synchronization"
+      ],
+      "passingConditions": [
+        "All TypeScript interfaces match spec data models exactly",
+        "State changes in one component reflect across dependent components",
+        "Mock API calls return appropriate data with simulated delays",
+        "Editor changes trigger auto-save state updates",
+        "Adding run to analysis set updates both views",
+        "Creating new test set appears in Test Sets sidebar immediately",
+        "Version checkout updates current version indicator across views"
+      ],
+      "deliverables": [
+        "State management setup (stores/contexts)",
+        "TypeScript interfaces for all data models",
+        "Mock data fixtures",
+        "Mock API service module",
+        "Updated components using centralized state"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 10,
+      "name": "Real-time Streaming Simulation",
+      "goal": "Implement simulated real-time streaming for run output",
+      "requirements": [
+        "Simulate WebSocket-like streaming for run output",
+        "Incremental text rendering during mock runs",
+        "Loading states and progress indicators",
+        "Mid-run message sending simulation",
+        "Simulate parallel test execution progress",
+        "Connection status indicators"
+      ],
+      "passingConditions": [
+        "Starting a run shows incremental output (not all at once)",
+        "Text streams in progressively during mock execution",
+        "Loading spinner shows while run is 'in progress'",
+        "User can send message during run (mock steering)",
+        "Test Set trigger shows progress across parallel runs",
+        "Run completion triggers proper state transition"
+      ],
+      "deliverables": [
+        "Streaming simulation utility",
+        "Updated RunOutput component with streaming support",
+        "Progress indicators for batch operations",
+        "Connection status component"
+      ],
+      "estimatedDays": 2
+    },
+    {
+      "id": 11,
+      "name": "Backend API Foundation",
+      "goal": "Implement real Next.js API routes with basic functionality",
+      "requirements": [
+        "Set up Next.js API routes structure",
+        "Implement Skills CRUD endpoints (GET, POST, DELETE)",
+        "Implement Versions endpoints (list, create, checkout)",
+        "Implement Runs endpoints (list, create, get details)",
+        "Implement TestSets endpoints",
+        "Implement AnalysisSets endpoints",
+        "In-memory storage for initial development",
+        "Connect frontend mock API calls to real endpoints"
+      ],
+      "passingConditions": [
+        "All API endpoints return valid responses",
+        "Skills can be created, listed, and deleted via API",
+        "Versions can be listed and created",
+        "Runs can be listed and details fetched",
+        "TestSets and AnalysisSets CRUD operations work",
+        "Frontend connects to real API instead of mock data",
+        "API error handling returns proper error responses"
+      ],
+      "deliverables": [
+        "API route files for all endpoints",
+        "In-memory data store",
+        "API error handling utilities",
+        "Updated frontend API service to use real endpoints"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 12,
+      "name": "File Storage Integration",
+      "goal": "Implement file storage for skills and version management",
+      "requirements": [
+        "Local file system storage for development (GCS-ready structure)",
+        "Content-addressable file storage implementation",
+        "Version manifest storage and retrieval",
+        "File CRUD operations via API",
+        "Skill folder mounting/loading",
+        "Version checkout with file loading"
+      ],
+      "passingConditions": [
+        "Skill files can be saved and retrieved",
+        "Editing a file persists changes",
+        "Version manifests correctly reference file hashes",
+        "Checking out a version loads correct files",
+        "Unchanged files are not duplicated across versions",
+        "File tree reflects actual stored files"
+      ],
+      "deliverables": [
+        "File storage service",
+        "Content-addressable storage implementation",
+        "Version manifest handlers",
+        "Updated API endpoints for file operations"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 13,
+      "name": "WebSocket Real-time Communication",
+      "goal": "Implement real WebSocket server for run streaming",
+      "requirements": [
+        "Set up WebSocket server alongside Next.js",
+        "Implement connection management",
+        "Stream run output in real-time",
+        "Handle mid-run user messages",
+        "Connection reconnection handling",
+        "Multiple simultaneous connection support"
+      ],
+      "passingConditions": [
+        "WebSocket connection establishes successfully",
+        "Run output streams to connected clients",
+        "User can send messages during active run",
+        "Disconnection is handled gracefully",
+        "Reconnection restores stream state",
+        "Multiple runs can stream simultaneously"
+      ],
+      "deliverables": [
+        "WebSocket server implementation",
+        "Client WebSocket service",
+        "Connection management utilities",
+        "Updated RunOutput with real streaming"
+      ],
+      "estimatedDays": 3
+    },
+    {
+      "id": 14,
+      "name": "Agent SDK Integration (Tester Agent)",
+      "goal": "Integrate Claude Agent SDK for skill testing",
+      "requirements": [
+        "Set up Claude Agent SDK",
+        "Implement Tester Agent execution",
+        "Skill file mounting to agent sandbox",
+        "Trajectory capture and storage",
+        "Run metrics collection (tokens, duration, tool calls)",
+        "Agent loop with user message injection",
+        "Error handling for failed runs"
+      ],
+      "passingConditions": [
+        "Tester Agent can execute a skill against a prompt",
+        "Agent has access to mounted skill files",
+        "Full trajectory is captured and stored",
+        "Run metrics are calculated correctly",
+        "User messages can steer agent mid-run",
+        "Failed runs are marked correctly with partial trajectory",
+        "Output streams back to frontend in real-time"
+      ],
+      "deliverables": [
+        "Tester Agent service",
+        "Sandbox file mounting logic",
+        "Trajectory storage implementation",
+        "Metrics calculation utilities"
+      ],
+      "estimatedDays": 4
+    },
+    {
+      "id": 15,
+      "name": "Agent SDK Integration (Builder Agent)",
+      "goal": "Integrate Claude Agent SDK for skill improvements",
+      "requirements": [
+        "Implement Builder Agent execution",
+        "Run history access tools for Builder Agent",
+        "Trajectory analysis capabilities",
+        "Diff generation for suggested changes",
+        "Suggestion ranking (confidence/impact)",
+        "Apply suggestion logic (new version vs overwrite)"
+      ],
+      "passingConditions": [
+        "Builder Agent can analyze selected runs",
+        "Agent can read conversation histories from past runs",
+        "Agent generates suggested changes as diffs",
+        "Suggestions include confidence/impact ranking",
+        "Accepting suggestion creates new version when runs exist",
+        "Accepting suggestion overwrites when no runs exist"
+      ],
+      "deliverables": [
+        "Builder Agent service",
+        "Run history access tools",
+        "Diff generation utilities",
+        "Suggestion application logic"
+      ],
+      "estimatedDays": 4
+    },
+    {
+      "id": 16,
+      "name": "Polish & Integration Testing",
+      "goal": "Final polish, bug fixes, and end-to-end testing",
+      "requirements": [
+        "End-to-end workflow testing (all key workflows from spec)",
+        "Bug fixes from integration testing",
+        "UI/UX polish and consistency review",
+        "Performance optimization for common operations",
+        "Error handling improvements",
+        "Loading states and feedback throughout",
+        "Documentation of setup and usage"
+      ],
+      "passingConditions": [
+        "Create skill → test → improve → version workflow works end-to-end",
+        "Test set batch execution works correctly",
+        "Analysis set curation → Builder suggestion works",
+        "Version checkout and branching works correctly",
+        "No critical bugs in core workflows",
+        "UI is responsive and consistent",
+        "Setup documentation allows new developer to run project"
+      ],
+      "deliverables": [
+        "Bug fixes and refinements",
+        "README with setup instructions",
+        "Known issues documentation",
+        "Demo-ready application"
+      ],
+      "estimatedDays": 3
+    }
+  ],
+  "totalEstimatedDays": 44,
+  "phases": {
+    "phase1_frontend_shell": {
+      "sprints": [1, 2, 3, 4, 5, 6, 7, 8],
+      "description": "Complete frontend with mock data - all views functional with dummy API calls",
+      "estimatedDays": 19
+    },
+    "phase2_state_streaming": {
+      "sprints": [9, 10],
+      "description": "State management and simulated real-time features",
+      "estimatedDays": 5
+    },
+    "phase3_backend": {
+      "sprints": [11, 12, 13],
+      "description": "Real API, storage, and WebSocket implementation",
+      "estimatedDays": 9
+    },
+    "phase4_agents": {
+      "sprints": [14, 15],
+      "description": "Claude Agent SDK integration for both agents",
+      "estimatedDays": 8
+    },
+    "phase5_polish": {
+      "sprints": [16],
+      "description": "Integration testing and final polish",
+      "estimatedDays": 3
+    }
+  },
+  "notes": {
+    "mvpCheckpoint": "After Sprint 10, you have a fully interactive frontend that can be used to test UX and iterate on design without backend dependencies",
+    "frontendFirstRationale": "Starting with frontend allows rapid iteration on agent interaction patterns and UX before building backend infrastructure",
+    "parallelization": "Once Sprint 9 is complete, backend work (Sprints 11-13) could potentially run in parallel with agent integration planning"
+  }
+}
