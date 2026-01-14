@@ -8,7 +8,7 @@ const initialState: WorkspaceState = {
   activeSidebarIcon: 'files',
   tabs: [],
   activeTabId: null,
-  currentVersion: 'Version 1'
+  currentVersion: 'Version 8'
 };
 
 // Action types
@@ -105,6 +105,16 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
 
     updateCurrentVersion: useCallback((version: string) => {
       dispatch({ type: 'UPDATE_CURRENT_VERSION', payload: version });
+    }, []),
+
+    checkoutVersion: useCallback((versionId: string, versionName: string, tabId?: string) => {
+      // Update current version
+      dispatch({ type: 'UPDATE_CURRENT_VERSION', payload: versionName });
+
+      // Close the version viewer tab if provided
+      if (tabId) {
+        dispatch({ type: 'CLOSE_TAB', payload: tabId });
+      }
     }, [])
   };
 

@@ -498,3 +498,24 @@ All requirements met:
 - TypeScript compilation passed
 - Build successful (744.6ms)
 
+
+[2026-01-14 12:20] Task 4.5: Implement checkout version functionality - COMPLETE
+- Added checkoutVersion action to WorkspaceActions interface
+- Implemented checkoutVersion in WorkspaceContext:
+  - Updates currentVersion state with version name
+  - Closes version viewer tab (optional, via tabId parameter)
+- Updated VersionViewerTab component:
+  - Added tabId prop
+  - Import and use checkoutVersion from useWorkspace
+  - Handle checkout button click to trigger checkout
+- Updated GraphSidebar:
+  - Use currentVersion from workspace state instead of mockVersionData.isCurrent
+  - Green dot indicator now based on version.name === currentVersion
+  - Indicator updates dynamically when version is checked out
+- Updated initial state to use "Version 8" as current version
+- Updated TabContent to pass tabId to VersionViewerTab
+- Integrated VersionViewerTab into TabContent (replaces placeholder)
+- TypeScript compilation passed
+- Build successful (774.0ms)
+- Full checkout workflow: Click version → Open viewer tab → Click "Checkout Version" → Version updates in StatusBar → Green dot moves to new version → Tab closes
+

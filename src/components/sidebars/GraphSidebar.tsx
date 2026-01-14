@@ -5,7 +5,7 @@ import { Plus } from 'lucide-react';
 import { getAllVersions } from '@/data/mockVersionData';
 
 export default function GraphSidebar() {
-  const { openTab } = useWorkspace();
+  const { openTab, currentVersion } = useWorkspace();
   const versions = getAllVersions(); // Returns sorted by version number descending (V8, V7, V6...)
 
   const handleVersionClick = (versionId: string, versionName: string) => {
@@ -34,7 +34,7 @@ export default function GraphSidebar() {
             onClick={() => handleVersionClick(version.id, version.name)}
           >
             <div className="version-list-item">
-              {version.isCurrent && (
+              {version.name === currentVersion && (
                 <span className="version-indicator current" title="Current Version"></span>
               )}
               <span className="sidebar-item-name">{version.name}</span>

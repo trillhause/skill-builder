@@ -3,17 +3,21 @@
 import ReadOnlyFileTree from '@/components/ReadOnlyFileTree';
 import { mockSkillFolder } from '@/data/mockSkillData';
 import { getVersionById } from '@/data/mockVersionData';
+import { useWorkspace } from '@/contexts/WorkspaceContext';
 
 interface VersionViewerTabProps {
   versionId: string;
+  tabId: string;
 }
 
-export default function VersionViewerTab({ versionId }: VersionViewerTabProps) {
+export default function VersionViewerTab({ versionId, tabId }: VersionViewerTabProps) {
+  const { checkoutVersion } = useWorkspace();
   const version = getVersionById(versionId);
 
   const handleCheckout = () => {
-    // This will be implemented in task 4.5
-    console.log('Checkout version:', versionId);
+    if (version) {
+      checkoutVersion(versionId, version.name, tabId);
+    }
   };
 
   return (

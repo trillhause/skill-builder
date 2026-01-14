@@ -2,6 +2,7 @@
 
 import { useWorkspace } from '@/contexts/WorkspaceContext';
 import MonacoEditor from '@/components/MonacoEditor';
+import VersionViewerTab from '@/components/tabs/VersionViewerTab';
 
 export default function TabContent() {
   const { tabs, activeTabId } = useWorkspace();
@@ -37,11 +38,10 @@ export default function TabContent() {
 
     case 'version-viewer':
       return (
-        <div className="tab-content-placeholder">
-          <h2>Version Viewer</h2>
-          <p>Version: {activeTab.versionId || 'Unknown'}</p>
-          <p className="placeholder-text">Version viewer content coming soon</p>
-        </div>
+        <VersionViewerTab
+          versionId={activeTab.versionId || ''}
+          tabId={activeTab.id}
+        />
       );
 
     case 'terminal':

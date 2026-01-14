@@ -61,7 +61,7 @@
         "Style with proper spacing and borders",
         "Make button full-width to match wireframe"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.5",

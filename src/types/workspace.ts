@@ -54,4 +54,5 @@ export interface WorkspaceActions {
   closeTab: (tabId: string) => void;
   setActiveTab: (tabId: string) => void;
   updateCurrentVersion: (version: string) => void;
+  checkoutVersion: (versionId: string, versionName: string, tabId?: string) => void;
 }
