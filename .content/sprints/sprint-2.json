@@ -174,7 +174,7 @@
         "Ensure no layout shifts when opening/closing tabs",
         "Check consistent spacing and alignment"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.12",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 10,
+  "completedTasks": 11,
   "status": "in-progress",
   "completedAt": null
 }

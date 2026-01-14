@@ -222,3 +222,21 @@ All requirements met:
   - Indentation guides (MonacoEditor.tsx:56-59)
   - Word wrap enabled (MonacoEditor.tsx:46)
 - All Monaco editor functionality working correctly
+
+[2026-01-14 01:12] Task 2.11: Visual polish and responsive behavior - COMPLETE
+- Verified all visual requirements:
+  ✅ File tree scrolls properly (overflow-y: auto, globals.css:193)
+  ✅ Tab bar scrolls horizontally (overflow-x: auto, globals.css:260)
+  ✅ Proper contrast for icons (folder: blue, file: secondary gray)
+  ✅ Hover states provide clear feedback (all :hover with --bg-hover)
+  ✅ Active tab clearly distinguishable (bg-primary + 2px blue border)
+  ✅ Layout responsive (flexbox with flex: 1)
+  ✅ No layout shifts (TabManager returns null when empty)
+  ✅ Consistent spacing (CSS variables: --spacing-*)
+- Additional visual polish:
+  - Smooth transitions on all interactive elements
+  - Text overflow handling with ellipsis
+  - Custom scrollbar styling for tab bar
+  - Consistent icon sizing (16px)
+  - Proper tree indentation (level × 16px)
+- All visual requirements met
