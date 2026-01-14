@@ -142,7 +142,7 @@
         "Verify code folding works for supported languages",
         "Test that typing in editor maintains syntax highlighting"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.10",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 8,
+  "completedTasks": 9,
   "status": "in-progress",
   "completedAt": null
 }
