@@ -61,7 +61,7 @@
         "Add loading state while Monaco initializes",
         "Handle editor mount and instance management"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "2.5",
@@ -193,7 +193,7 @@
     }
   ],
   "totalTasks": 12,
-  "completedTasks": 3,
+  "completedTasks": 4,
   "status": "in-progress",
   "completedAt": null
 }
