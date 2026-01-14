@@ -2,10 +2,10 @@
 
 import { useWorkspace } from '@/contexts/WorkspaceContext';
 import { Plus } from 'lucide-react';
-import { getRunThreads, formatTimeAgo, RunStatus } from '@/data/mockRunData';
+import { getRunThreads, formatTimeAgo, RunStatus, createRunThread } from '@/data/mockRunData';
 
 export default function TesterSidebar() {
-  const { openTab, tabs, activeTabId } = useWorkspace();
+  const { openTab, tabs, activeTabId, setActiveSidebarIcon } = useWorkspace();
   const threads = getRunThreads();
 
   const activeTab = tabs.find(t => t.id === activeTabId);
@@ -22,8 +22,14 @@ export default function TesterSidebar() {
   };
 
   const handleNewRun = () => {
-    // Placeholder for Task 6.10 - wire 'New Run' button
-    console.log('New Run button clicked');
+    const newThread = createRunThread(`Run ${threads.length + 1}`);
+    openTab({
+      id: `run-${newThread.id}`,
+      type: 'tester-run',
+      title: newThread.name,
+      threadId: newThread.id,
+      isClosable: true
+    });
   };
 
   const getStatusIndicator = (status: RunStatus) => {

@@ -1250,7 +1250,25 @@ All requirements met:
 - Added thread ref for tracking current thread
 - Added sessionId state to track active session
 - Error handling with try/catch block
-- Cleanup controller in finally block
+  - Cleanup controller in finally block
 - TypeScript compilation passed
 - Build successful (842.3ms)
+
+[2026-01-14 17:55] Task 6.10: Wire 'New Run' button in TesterSidebar - COMPLETE
+- Implemented handleNewRun function in TesterSidebar
+- Import createRunThread from mockRunData
+- Import setActiveSidebarIcon from WorkspaceContext
+- Create new run thread with unique ID using createRunThread()
+- Generate default name: "Run N" where N is thread count + 1
+- Timestamp set to current time by createRunThread
+- Status set to 'ready' by createRunThread
+- Thread automatically added to sidebar list via createRunThread
+- Open new RunTab for the new thread via openTab()
+- Tab ID format: "run-{threadId}"
+- Tab title set to new thread name
+- Thread marked as closable
+- New thread immediately appears in sidebar after clicking button
+- New run tab opens automatically
+- TypeScript compilation passed
+- Build successful (856.1ms)
 

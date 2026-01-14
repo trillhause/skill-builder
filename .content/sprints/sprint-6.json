@@ -111,7 +111,7 @@
         "Allow cancelling in-progress runs",
         "Update TesterSidebar with new run thread"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "6.8",
