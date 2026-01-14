@@ -1,0 +1,222 @@
+{
+  "sprintId": 5,
+  "name": "Terminal View",
+  "goal": "Implement terminal sidebar and terminal tab",
+  "tasks": [
+    {
+      "id": "5.1",
+      "category": "setup",
+      "description": "Install xterm.js and related dependencies",
+      "steps": [
+        "Run npm install xterm @xterm/xterm-addon-fit",
+        "Install types: npm install --save-dev @types/xterm",
+        "Verify xterm packages are in package.json",
+        "Check for any peer dependency warnings",
+        "Test that xterm imports work in TypeScript"
+      ],
+      "passes": true
+    },
+    {
+      "id": "5.2",
+      "category": "setup",
+      "description": "Create mock command handler utility",
+      "steps": [
+        "Create src/utils/mockTerminal.ts",
+        "Define CommandHandler interface with execute method",
+        "Implement mock responses for common commands (ls, pwd, echo, clear, etc.)",
+        "Create command history storage mechanism",
+        "Add environment-specific command sets (Node vs Bash)",
+        "Implement simulated delay for realistic feel",
+        "Export command handler and history utilities"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.3",
+      "category": "functional",
+      "description": "Create TerminalSidebar component",
+      "steps": [
+        "Create src/components/sidebars/TerminalSidebar.tsx",
+        "Display single item: 'Global Session' with terminal icon",
+        "Add click handler to open/focus terminal tab",
+        "Style to match existing sidebar components",
+        "Add hover state for the session item",
+        "Ensure consistent spacing and typography",
+        "Import and use in WorkspaceLayout for 'terminal' icon"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.4",
+      "category": "functional",
+      "description": "Create TerminalTab component with xterm.js integration",
+      "steps": [
+        "Create src/components/tabs/TerminalTab.tsx",
+        "Set up xterm Terminal instance with useRef",
+        "Initialize terminal in useEffect on mount",
+        "Configure FitAddon for responsive terminal sizing",
+        "Apply dark theme matching IDE aesthetic",
+        "Set up terminal options (cursor style, font, etc.)",
+        "Handle cleanup on component unmount",
+        "Add ref to terminal container div"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.5",
+      "category": "functional",
+      "description": "Implement environment selector in terminal tab header",
+      "steps": [
+        "Add environment state (Node/Bash) to TerminalTab",
+        "Create dropdown/toggle UI in tab header area",
+        "Style environment selector to match wireframe",
+        "Add onChange handler to switch environments",
+        "Display current environment prominently",
+        "Update terminal prompt when environment changes",
+        "Test switching between Node and Bash modes"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.6",
+      "category": "functional",
+      "description": "Wire terminal input to mock command handler",
+      "steps": [
+        "Import mockTerminal utilities in TerminalTab",
+        "Set up onData listener for terminal input",
+        "Parse user input to detect Enter key (command submission)",
+        "Extract command from input buffer",
+        "Pass command to appropriate handler (Node or Bash)",
+        "Write command output back to terminal",
+        "Handle special keys (backspace, arrow keys)",
+        "Clear input buffer after command execution"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.7",
+      "category": "functional",
+      "description": "Implement command history support",
+      "steps": [
+        "Maintain command history array in TerminalTab state",
+        "Add current history position tracker",
+        "Listen for up/down arrow key events",
+        "Navigate history on up arrow (previous commands)",
+        "Navigate history on down arrow (more recent commands)",
+        "Replace current input line with history command",
+        "Handle edge cases (empty history, at beginning/end)",
+        "Test history navigation works correctly"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.8",
+      "category": "functional",
+      "description": "Implement clear terminal functionality",
+      "steps": [
+        "Add 'clear' command to mock command handlers",
+        "Call terminal.clear() when clear command is executed",
+        "Reset terminal to initial prompt state",
+        "Verify clear works in both Node and Bash environments",
+        "Test that history persists after clear",
+        "Ensure cursor returns to prompt after clear"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.9",
+      "category": "functional",
+      "description": "Integrate TerminalTab into TabContent and ensure singleton behavior",
+      "steps": [
+        "Import TerminalTab in TabContent.tsx",
+        "Add case for 'terminal' tab type",
+        "Render TerminalTab component",
+        "Update TerminalSidebar to check if terminal tab already exists",
+        "If terminal tab exists, focus it instead of creating new one",
+        "Test clicking 'Global Session' multiple times focuses same tab",
+        "Verify only one terminal tab can exist at a time"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.10",
+      "category": "visual",
+      "description": "Style terminal tab with dark theme",
+      "steps": [
+        "Add CSS for terminal-tab in globals.css",
+        "Configure xterm theme colors (background, foreground, cursor)",
+        "Set up accent colors matching IDE palette",
+        "Configure font family (monospace) and size",
+        "Add proper padding and margins for terminal container",
+        "Ensure terminal fills available tab content area",
+        "Test theme consistency with rest of application"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.11",
+      "category": "visual",
+      "description": "Style environment selector and terminal header",
+      "steps": [
+        "Add CSS for environment-selector component",
+        "Style dropdown/toggle to match IDE controls",
+        "Add hover and active states",
+        "Position selector in terminal tab header area",
+        "Ensure clear visual indication of current environment",
+        "Add smooth transitions for selector interactions",
+        "Test selector appearance in dark theme"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.12",
+      "category": "visual",
+      "description": "Polish terminal UI and interactions",
+      "steps": [
+        "Verify terminal resize works with window resize",
+        "Test FitAddon properly adjusts terminal dimensions",
+        "Ensure scrollback works for long output",
+        "Add proper cursor visibility and blinking",
+        "Test text selection and copy functionality",
+        "Verify prompt appearance matches environment",
+        "Check terminal performance with rapid input/output"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.13",
+      "category": "testing",
+      "description": "Test terminal workflow end-to-end",
+      "steps": [
+        "Verify Terminal icon shows 'Global Session' in sidebar",
+        "Test clicking 'Global Session' opens Terminal tab",
+        "Verify terminal is singleton (re-clicking focuses existing tab)",
+        "Test typing commands and seeing mock responses",
+        "Verify environment dropdown switches between Node/Bash",
+        "Test up arrow cycles through command history",
+        "Verify clear command clears terminal output",
+        "Test terminal tab can be closed and reopened",
+        "Verify terminal state persists when switching sidebar icons"
+      ],
+      "passes": false
+    },
+    {
+      "id": "5.14",
+      "category": "testing",
+      "description": "Build and verification",
+      "steps": [
+        "Run npm run build",
+        "Verify build completes without errors",
+        "Check TypeScript compilation passes",
+        "Run npm run lint",
+        "Verify no linting errors",
+        "Test all passing conditions from sprint definition",
+        "Verify xterm.js bundles correctly for production"
+      ],
+      "passes": false
+    }
+  ],
+  "totalTasks": 14,
+  "completedTasks": 0,
+  "status": "pending"
+}

@@ -1,4 +1,4 @@
-Analyze @.content/sprints.json and @progress.txt 
+Analyze @.content/sprints.json and @.content/progress.txt   
 
 Pick up the next sprint that is pending.
 
