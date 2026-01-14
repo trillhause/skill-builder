@@ -636,3 +636,17 @@ All requirements met:
   ✓ Green dot moves to newly checked out version
   ✓ Version viewer tab closes after checkout
 
+
+Sprint 4 Status: COMPLETE
+All requirements met:
+✓ Mock version history data (8 versions)
+✓ ReadOnlyFileTree component for version viewing
+✓ GraphSidebar with version list (V8-V1, descending)
+✓ Current version indicator (green dot with glow)
+✓ VersionViewerTab component with preview message
+✓ Checkout version functionality
+✓ StatusBar updates with current version
+✓ Tab management for version viewers
+✓ All visual styling complete
+✓ Build and lint pass
+

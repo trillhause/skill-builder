@@ -100,7 +100,7 @@
     {
       "id": 4,
       "name": "Version Graph View",
-      "status": "pending",
+      "status": "complete",
       "goal": "Implement version list sidebar and read-only version viewer tab",
       "requirements": [
         "Version list in sidebar (vertical list: V8, V7, V6...)",
