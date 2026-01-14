@@ -1,6 +1,6 @@
 'use client';
 
-import ReadOnlyFileTree from '@/components/ReadOnlyFileTree';
+import VersionBrowser from '@/components/version-browser/VersionBrowser';
 import { mockSkillFolder } from '@/data/mockSkillData';
 import { getVersionById } from '@/data/mockVersionData';
 import { useWorkspace } from '@/contexts/WorkspaceContext';
@@ -23,8 +23,8 @@ export default function VersionViewerTab({ versionId, tabId }: VersionViewerTabP
   return (
     <div className="version-viewer-tab">
       <div className="version-viewer-content">
-        <div className="version-viewer-tree">
-          <ReadOnlyFileTree data={mockSkillFolder} />
+        <div className="version-browser-wrapper">
+          <VersionBrowser rootFolder={mockSkillFolder} />
         </div>
 
         <div className="version-viewer-message">

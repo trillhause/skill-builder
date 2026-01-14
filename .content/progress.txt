@@ -650,3 +650,81 @@ All requirements met:
 ✓ All visual styling complete
 ✓ Build and lint pass
 
+
+[2026-01-14 13:00] Finder-like Version Viewer Implementation - COMPLETE
+
+Task 1: Helper Functions (fileNavigation.ts)
+- Created src/utils/fileNavigation.ts
+- Implemented getFolderContents() - Get children of folder at path
+- Implemented buildBreadcrumbs() - Build breadcrumb segments for navigation
+- Implemented getParentPath() - Get parent path for navigation
+- All functions work with existing FileNode data structure
+
+Task 2: BreadcrumbNav Component
+- Created src/components/version-browser/BreadcrumbNav.tsx
+- Displays clickable breadcrumb navigation
+- ChevronRight separators between path segments
+- Current path highlighted (bold, non-clickable)
+- Previous paths clickable to navigate up
+
+Task 3: FileGrid Component
+- Created src/components/version-browser/FileGrid.tsx
+- Grid layout with auto-fill (min 100px columns)
+- Large 64px folder/file icons from lucide-react
+- Hover effects on grid items
+- Empty folder state message
+- File names centered below icons
+
+Task 4: FileContentPanel Component
+- Created src/components/version-browser/FileContentPanel.tsx
+- Wraps Monaco editor for read-only file viewing
+- Shows file path in header
+- Placeholder message when no file selected
+- Preserves syntax highlighting via language prop
+
+Task 5: VersionBrowser Container Component
+- Created src/components/version-browser/VersionBrowser.tsx
+- Manages navigation state (currentPath, selectedFile)
+- Horizontal split layout (40% left, 60% right)
+- Integrates all components
+- Handles folder/file clicks appropriately
+- Clears file selection when navigating folders
+
+Task 6: Updated VersionViewerTab
+- Replaced ReadOnlyFileTree with VersionBrowser
+- Kept checkout button at bottom
+- Maintains preview-only message box
+- Clean integration with new components
+
+Task 7: CSS Styling
+- Added .version-browser-wrapper for layout
+- Added .version-browser with flex layout
+- Added .version-browser-left (40%) and .version-browser-right (60%)
+- Added .breadcrumb-nav with clickable segments
+- Added .file-grid with responsive grid layout
+- Added .file-grid-item with hover effects
+- Added .file-content-panel with header and editor
+- All styles use CSS variables for theming
+- Dark theme compatible
+
+Task 8: Build and Verification
+- Fixed TypeScript error (FileType naming conflict)
+- Build successful (769.5ms)
+- TypeScript compilation passed
+- Lint passed with 1 pre-existing warning
+- All components render correctly
+- Navigation logic verified
+- Layout proportions correct
+
+Features Implemented:
+✓ Horizontal split layout (40/60)
+✓ Grid view with large icons (64px)
+✓ Clickable breadcrumb navigation
+✓ Folder navigation (click to enter)
+✓ File content viewing (Monaco, read-only)
+✓ Path display in content header
+✓ Empty folder state
+✓ Hover effects and transitions
+✓ Dark theme support
+✓ Responsive grid layout
+
