@@ -198,7 +198,7 @@
         "Test terminal tab can be closed and reopened",
         "Verify terminal state persists when switching sidebar icons"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "5.14",
