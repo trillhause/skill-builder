@@ -33,7 +33,7 @@
         "Style sidebar items with hover states",
         "Timestamp formatted nicely (e.g., '2 hours ago')"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "6.3",
