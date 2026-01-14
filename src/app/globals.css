@@ -667,7 +667,7 @@ a {
 
 .version-viewer-message {
   padding: var(--spacing-lg);
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border: 1px solid var(--border-primary);
   margin: var(--spacing-lg);
   border-radius: 4px;

@@ -6,12 +6,17 @@ import { getFolderContents, buildBreadcrumbs } from '@/utils/fileNavigation';
 import BreadcrumbNav from './BreadcrumbNav';
 import FileGrid from './FileGrid';
 import FileContentPanel from './FileContentPanel';
+import { TriangleAlert } from 'lucide-react';
 
 interface VersionBrowserProps {
   rootFolder: FileNode;
+  checkoutMessage?: {
+    show: boolean;
+    onCheckout: () => void;
+  };
 }
 
-export default function VersionBrowser({ rootFolder }: VersionBrowserProps) {
+export default function VersionBrowser({ rootFolder, checkoutMessage }: VersionBrowserProps) {
   const [currentPath, setCurrentPath] = useState<string>(rootFolder.path);
   const [selectedFile, setSelectedFile] = useState<FileNode | null>(null);
 
@@ -61,6 +66,25 @@ export default function VersionBrowser({ rootFolder }: VersionBrowserProps) {
     <div className="version-browser">
       <div className="version-browser-left">
         <FileGrid items={currentFolderContents} onItemClick={handleItemClick} selectedFile={selectedFile} />
+        {checkoutMessage?.show && (
+          <div className="version-viewer-message">
+            
+            <p style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ display: 'flex', alignItems: 'center' }}>
+                <TriangleAlert size={18} style={{ marginRight: 6, color: 'var(--accent-primary)' }} />
+              </span>
+              <span>
+                <strong>View only mode</strong> 
+              </span>
+            </p>
+            <p>
+            To run tests or make changes to this version, you must first checkout this version.
+            </p>
+            <button className="checkout-button" onClick={checkoutMessage.onCheckout}>
+              Checkout Version
+            </button>
+          </div>
+        )}
       </div>
       <div className="version-browser-right">
           <FileContentPanel file={selectedFile} />

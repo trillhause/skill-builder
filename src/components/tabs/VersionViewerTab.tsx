@@ -24,17 +24,13 @@ export default function VersionViewerTab({ versionId, tabId }: VersionViewerTabP
     <div className="version-viewer-tab">
       <div className="version-viewer-content">
         <div className="version-browser-wrapper">
-          <VersionBrowser rootFolder={mockSkillFolder} />
-        </div>
-
-        <div className="version-viewer-message">
-          <p>
-            Preview Only: To run tests or make changes to this version, you
-            must first checkout this version
-          </p>
-          <button className="checkout-button" onClick={handleCheckout}>
-            Checkout Version
-          </button>
+          <VersionBrowser
+            rootFolder={mockSkillFolder}
+            checkoutMessage={{
+              show: true,
+              onCheckout: handleCheckout,
+            }}
+          />
         </div>
       </div>
     </div>

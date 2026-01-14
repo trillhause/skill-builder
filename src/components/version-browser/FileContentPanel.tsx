@@ -25,7 +25,7 @@ export default function FileContentPanel({ file }: FileContentPanelProps) {
         <MonacoEditor
           content={file.content || '// No content available'}
           language={file.language || 'text'}
-          onChange={undefined}
+          readOnly={true}
         />
       </div>
     </div>
