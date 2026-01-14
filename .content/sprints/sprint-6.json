@@ -159,7 +159,7 @@
         "Add thread to sidebar list",
         "Set thread as active in sidebar"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "6.11",

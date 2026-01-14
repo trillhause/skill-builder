@@ -5,7 +5,7 @@ import { Plus } from 'lucide-react';
 import { getRunThreads, formatTimeAgo, RunStatus, createRunThread } from '@/data/mockRunData';
 
 export default function TesterSidebar() {
-  const { openTab, tabs, activeTabId, setActiveSidebarIcon } = useWorkspace();
+  const { openTab, tabs, activeTabId } = useWorkspace();
   const threads = getRunThreads();
 
   const activeTab = tabs.find(t => t.id === activeTabId);

@@ -3,10 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Play, CheckCircle2, Clock, XCircle, MessageSquare, PlayCircle, AlertTriangle, ChevronRight, ChevronDown, Square } from 'lucide-react';
 import { getRunThreadById, getRunSessionById, RunStatus, TrajectoryStep, createRunSession, updateRunSessionStatus, appendTrajectoryStep, generateMockTrajectory } from '@/data/mockRunData';
-import { StreamController, StreamChunk } from '@/utils/mockStreaming';
+import { StreamController } from '@/utils/mockStreaming';
 
 interface RunTabProps {
-  tabId: string;
   threadId: string;
 }
 
@@ -23,17 +22,10 @@ interface TrajectoryStepDisplayProps {
 }
 
 function TrajectoryStepDisplay({ step }: TrajectoryStepDisplayProps) {
-  const [isExpanded, setIsExpanded] = useState(step.expanded !== false);
-
   const isLargeContent = step.content.length > 200;
   const isCollapsible = step.type === 'tool_call' || step.type === 'result' || isLargeContent;
-  const defaultCollapsed = isCollapsible && step.expanded !== true;
-
-  useEffect(() => {
-    if (defaultCollapsed) {
-      setIsExpanded(false);
-    }
-  }, [defaultCollapsed]);
+  const isInitiallyExpanded = !isCollapsible || step.expanded === true;
+  const [isExpanded, setIsExpanded] = useState(isInitiallyExpanded);
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -109,7 +101,7 @@ function TrajectoryStepDisplay({ step }: TrajectoryStepDisplayProps) {
   );
 }
 
-export default function RunTab({ tabId, threadId }: RunTabProps) {
+export default function RunTab({ threadId }: RunTabProps) {
   const [model, setModel] = useState('Claude 3.5 Sonnet');
   const [prompt, setPrompt] = useState('');
   const [runStatus, setRunStatus] = useState<RunStatus>('ready');
@@ -271,14 +263,14 @@ export default function RunTab({ tabId, threadId }: RunTabProps) {
         {runStatus === 'ready' && prompt.trim() === '' && (
           <div className="run-output-placeholder">
             <p className="output-placeholder-text">
-              Enter a prompt and click "Run Test" to start testing the skill.
+              Enter a prompt and click &quot;Run Test&quot; to start testing the skill.
             </p>
           </div>
         )}
         {runStatus === 'ready' && prompt.trim() !== '' && (
           <div className="run-output-placeholder">
             <p className="output-placeholder-text">
-              Ready to run. Click "Run Test" to start.
+              Ready to run. Click &quot;Run Test&quot; to start.
             </p>
           </div>
         )}

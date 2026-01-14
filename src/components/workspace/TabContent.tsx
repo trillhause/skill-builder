@@ -61,7 +61,6 @@ export default function TabContent() {
     case 'tester-run':
       return (
         <RunTab
-          tabId={activeTab.id}
           threadId={activeTab.threadId || ''}
         />
       );
