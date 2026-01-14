@@ -29,7 +29,7 @@ export default function TabContent() {
           <MonacoEditor
             content={activeTab.content || ''}
             language={activeTab.language || 'text'}
-            onChange={(value) => {
+            onChange={(_value) => {
               // TODO: Update tab content
             }}
           />

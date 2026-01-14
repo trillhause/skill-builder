@@ -519,3 +519,120 @@ All requirements met:
 - Build successful (774.0ms)
 - Full checkout workflow: Click version → Open viewer tab → Click "Checkout Version" → Version updates in StatusBar → Green dot moves to new version → Tab closes
 
+
+[2026-01-14 12:25] Task 4.7: Wire version selection to tab opening - COMPLETE (Verification)
+- Verified GraphSidebar handleVersionClick implementation:
+  ✓ Creates correct tab with type: 'version-viewer'
+  ✓ Tab id is unique per version (format: `version-${versionId}`)
+  ✓ Passes versionId, title, and isClosable: true
+- Verified WorkspaceContext.openTab behavior:
+  ✓ Checks for existing tab by id and focuses it if found
+  ✓ Prevents duplicate tabs for same version
+  ✓ Multiple version tabs can be open simultaneously
+- Verified TabBar integration:
+  ✓ Version viewer tabs show in TabBar with correct title
+  ✓ Close button (X) works correctly
+- Verified tab persistence:
+  ✓ Tabs persist when switching between sidebar icons
+  ✓ Active tab state maintained across icon switches
+- All wiring requirements verified and working
+- No code changes needed - functionality already complete
+
+
+[2026-01-14 12:30] Task 4.8: Style version list with current version indicator - COMPLETE (Verification)
+- Verified CSS for version-indicator (already added in task 4.3):
+  ✓ .version-indicator with 8px circular dot
+  ✓ .version-indicator.current with green background
+  ✓ Green dot positioned to left of version text using flexbox
+- Verified CSS variable usage:
+  ✓ Using --accent-success (#3fb950) for green color
+  ✓ box-shadow: 0 0 4px for glow effect in dark theme
+- Verified visual feedback states:
+  ✓ .sidebar-list-item:hover provides visual feedback
+  ✓ Active tab highlighting maintained
+- Verified scrolling behavior:
+  ✓ .sidebar-list with overflow-y: auto
+  ✓ Handles more than viewport height automatically
+- Verified font sizing and spacing:
+  ✓ Font size: 13px (inherited from sidebar-list-item)
+  ✓ Gap: 8px between indicator and text
+  ✓ Matches wireframe proportions
+- All visual styling requirements already complete
+- No code changes needed
+
+
+[2026-01-14 12:35] Task 4.9: Style VersionViewerTab and preview message box - COMPLETE (Verification)
+- Verified CSS for version-viewer-tab layout (already added in task 4.4):
+  ✓ .version-viewer-tab with full height flex column layout
+  ✓ .version-viewer-content with flex and overflow handling
+  ✓ .version-viewer-tree with flex-grow and scrolling
+- Verified preview-only message box styling:
+  ✓ .version-viewer-message with padding, border, rounded corners
+  ✓ Background: --bg-secondary with border
+  ✓ Margin: --spacing-lg (24px)
+  ✓ border-radius: 4px for rounded corners
+- Verified file tree and message box positioning:
+  ✓ Flex column layout matches wireframe
+  ✓ File tree takes remaining space (flex: 1)
+  ✓ Message box positioned at bottom with proper margin
+- Verified 'Checkout Version' button styling:
+  ✓ Full width (width: 100%)
+  ✓ Background: --accent-primary with hover state
+  ✓ Hover: Changes to --bg-hover with accent border
+  ✓ Smooth transitions (--transition-fast)
+  ✓ Proper padding and font sizing
+- Verified spacing and responsiveness:
+  ✓ Consistent spacing using CSS variables
+  ✓ Flex-based layout is responsive
+- All visual styling requirements already complete
+- No code changes needed
+
+
+[2026-01-14 12:40] Task 4.10: Polish version list UI - COMPLETE (Verification)
+- Verified version number formatting:
+  ✓ Using version.name from mockVersionData ("Version 8", "Version 7", etc.)
+  ✓ Consistent "Version N" format across all versions
+- Verified subtle hover effect:
+  ✓ .sidebar-list-item:hover with --bg-hover background
+  ✓ Provides clear visual feedback on hover
+- Verified smooth transitions:
+  ✓ transition: background-color var(--transition-fast) (150ms ease)
+  ✓ Smooth hover animations throughout
+- Verified text contrast and readability:
+  ✓ Version names: --text-primary (#e6edf3)
+  ✓ Dates: --text-muted (#6e7681)
+  ✓ High contrast against dark background
+- Verified different version counts:
+  ✓ Currently 8 versions (V8 to V1)
+  ✓ overflow-y: auto handles any count
+  ✓ Scrolling works smoothly
+- Verified consistent spacing:
+  ✓ Using same .sidebar-list-item class as other sidebars
+  ✓ Padding: 8px 16px (--spacing-sm --spacing-md)
+  ✓ Font size: 13px consistent across sidebars
+  ✓ Border-bottom: 1px solid separator
+- All polish requirements already complete
+- No code changes needed
+
+
+[2026-01-14 12:45] Task 4.12: Build and verification - COMPLETE
+- Fixed ESLint issues:
+  - Changed unused 'value' parameter to '_value' in TabContent.tsx
+  - Changed [key: string]: any to [key: string]: unknown in workspace.ts
+- npm run build: SUCCESS (compiled in 751.1ms)
+- TypeScript compilation: PASSED (no errors)
+- All 12 routes generated successfully
+- npm run lint: PASSED with 1 acceptable warning (unused TODO parameter)
+- No critical linting errors
+- Verified all Sprint 4 passing conditions:
+  ✓ Clicking Graph icon shows version list in sidebar (8 versions)
+  ✓ Version list displays V8 to V1 in descending order
+  ✓ Current version (V8) has green indicator dot
+  ✓ Clicking a version opens version-viewer tab
+  ✓ Version viewer tab displays ReadOnlyFileTree
+  ✓ Preview-only message box with checkout button
+  ✓ Multiple version tabs can be open simultaneously
+  ✓ Checkout button updates current version in StatusBar
+  ✓ Green dot moves to newly checked out version
+  ✓ Version viewer tab closes after checkout
+

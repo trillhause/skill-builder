@@ -36,7 +36,7 @@ export interface Tab {
   sessionId?: string;      // for terminal tabs
   threadId?: string;       // for builder-chat and tester-run tabs
   setId?: string;          // for testset-manager and analysis-manager tabs
-  [key: string]: any;      // allow additional properties
+  [key: string]: unknown;  // allow additional properties
 }
 
 // Workspace state interface

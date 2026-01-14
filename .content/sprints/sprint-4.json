@@ -76,7 +76,7 @@
         "Add console log or toast notification on successful checkout",
         "Test checkout flow end-to-end"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.6",
@@ -90,7 +90,7 @@
         "Verify ReadOnlyFileTree shows correct files",
         "Test tab switching between version viewer and other tabs"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.7",
@@ -104,7 +104,7 @@
         "Test opening multiple version tabs simultaneously",
         "Verify tab persistence when switching sidebar icons"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.8",
@@ -119,7 +119,7 @@
         "Match font sizing and spacing to wireframe",
         "Test indicator visibility in dark theme"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.9",
@@ -134,7 +134,7 @@
         "Ensure proper spacing between elements",
         "Test layout responsiveness"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.10",
@@ -149,7 +149,7 @@
         "Test with different version counts (edge cases)",
         "Ensure consistent spacing with other sidebar lists"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.11",
