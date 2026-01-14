@@ -1,0 +1,199 @@
+{
+  "sprintId": 2,
+  "name": "File Browser & Monaco Editor Integration",
+  "goal": "Implement the file tree viewer and Monaco code editor with tab management",
+  "tasks": [
+    {
+      "id": "2.1",
+      "category": "setup",
+      "description": "Install Monaco Editor and dependencies",
+      "steps": [
+        "Install @monaco-editor/react package",
+        "Install necessary type definitions",
+        "Verify package installation",
+        "Test basic Monaco import in a component"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.2",
+      "category": "setup",
+      "description": "Create mock skill folder data structure",
+      "steps": [
+        "Create src/data/mockSkillData.ts",
+        "Define TypeScript interfaces for FileNode and FolderStructure",
+        "Create sample Skill.md with skill description",
+        "Add sample JavaScript file (e.g., helpers.js)",
+        "Add sample Python file (e.g., script.py)",
+        "Add sample TypeScript file (e.g., types.ts)",
+        "Structure data with nested folders and files"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.3",
+      "category": "functional",
+      "description": "Create FileTree component with expand/collapse functionality",
+      "steps": [
+        "Create src/components/FileTree.tsx",
+        "Implement recursive tree rendering for nested folders",
+        "Add expand/collapse state management",
+        "Use ChevronRight and ChevronDown icons from lucide-react",
+        "Add Folder and File icons for visual distinction",
+        "Implement click handlers for folder expand/collapse",
+        "Implement click handlers for file selection",
+        "Style tree with proper indentation for nested items",
+        "Add hover states for interactive feedback"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.4",
+      "category": "functional",
+      "description": "Create Monaco Editor wrapper component",
+      "steps": [
+        "Create src/components/MonacoEditor.tsx",
+        "Import Editor from @monaco-editor/react",
+        "Configure dark theme (vs-dark)",
+        "Set up props for file content, language, and onChange handler",
+        "Implement language detection based on file extension",
+        "Configure editor options (line numbers, minimap, etc.)",
+        "Add loading state while Monaco initializes",
+        "Handle editor mount and instance management"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.5",
+      "category": "functional",
+      "description": "Create TabManager component for multi-file editing",
+      "steps": [
+        "Create src/components/TabManager.tsx",
+        "Define Tab interface with id, name, path, content, language",
+        "Implement tabs state management with useState",
+        "Create tab bar UI with horizontal scroll support",
+        "Add active tab highlighting",
+        "Implement tab close button (X icon)",
+        "Add click handler for tab switching",
+        "Style tabs to match IDE aesthetic",
+        "Handle empty state (no tabs open)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.6",
+      "category": "functional",
+      "description": "Create file content state management",
+      "steps": [
+        "Create src/hooks/useFileManager.ts custom hook",
+        "Manage openTabs state array",
+        "Manage activeTabId state",
+        "Implement openFile function to add new tabs",
+        "Implement closeTab function to remove tabs",
+        "Implement switchTab function to change active tab",
+        "Prevent duplicate tabs for same file",
+        "Handle tab activation when opening existing file"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.7",
+      "category": "functional",
+      "description": "Integrate all components in files page",
+      "steps": [
+        "Update src/app/files/page.tsx",
+        "Import FileTree, TabManager, and MonacoEditor components",
+        "Use useFileManager hook for state management",
+        "Create two-column layout (tree on left, editor on right)",
+        "Wire FileTree onFileClick to openFile handler",
+        "Wire TabManager to tabs state and handlers",
+        "Wire MonacoEditor to active tab content",
+        "Add resizable splitter between tree and editor (optional stretch goal)",
+        "Style layout with proper spacing and borders"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.8",
+      "category": "functional",
+      "description": "Test file opening and tab management workflow",
+      "steps": [
+        "Test clicking a file in tree opens it in new tab",
+        "Test clicking same file twice doesn't create duplicate tab",
+        "Test switching between tabs shows correct content",
+        "Test closing tabs with X button",
+        "Test closing active tab switches to another tab",
+        "Test closing last tab shows empty state",
+        "Test opening multiple files creates multiple tabs",
+        "Verify tab order matches opening order"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.9",
+      "category": "functional",
+      "description": "Verify syntax highlighting for different file types",
+      "steps": [
+        "Open Skill.md file and verify markdown syntax highlighting",
+        "Open .js file and verify JavaScript syntax highlighting",
+        "Open .py file and verify Python syntax highlighting",
+        "Open .ts file and verify TypeScript syntax highlighting",
+        "Test that Monaco auto-detects language from file extension",
+        "Verify code folding works for supported languages",
+        "Test that typing in editor maintains syntax highlighting"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.10",
+      "category": "functional",
+      "description": "Test Monaco editor functionality",
+      "steps": [
+        "Test typing in editor updates content",
+        "Test selection (click and drag)",
+        "Test undo (Cmd/Ctrl+Z)",
+        "Test redo (Cmd/Ctrl+Shift+Z)",
+        "Test cut/copy/paste",
+        "Test find (Cmd/Ctrl+F)",
+        "Test multi-cursor support (Cmd/Ctrl+D)",
+        "Verify all Monaco keybindings work as expected"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.11",
+      "category": "visual",
+      "description": "Visual polish and responsive behavior",
+      "steps": [
+        "Verify file tree scrolls properly with many files",
+        "Test tab bar scrolls horizontally with many tabs",
+        "Ensure proper contrast for file/folder icons",
+        "Check hover states provide clear feedback",
+        "Verify active tab is clearly distinguishable",
+        "Test layout works at different screen sizes",
+        "Ensure no layout shifts when opening/closing tabs",
+        "Check consistent spacing and alignment"
+      ],
+      "passes": false
+    },
+    {
+      "id": "2.12",
+      "category": "testing",
+      "description": "Build and verification",
+      "steps": [
+        "Run npm run build",
+        "Verify build completes without errors",
+        "Check for TypeScript type errors",
+        "Run npm run lint",
+        "Verify no linting errors",
+        "Test application in development mode",
+        "Verify all Sprint 2 passing conditions are met"
+      ],
+      "passes": false
+    }
+  ],
+  "totalTasks": 12,
+  "completedTasks": 0,
+  "status": "pending",
+  "completedAt": null
+}
