@@ -1,0 +1,189 @@
+{
+  "sprintId": 4,
+  "name": "Version Graph View",
+  "goal": "Implement version list sidebar and read-only version viewer tab",
+  "tasks": [
+    {
+      "id": "4.1",
+      "category": "setup",
+      "description": "Create mock version history data",
+      "steps": [
+        "Create src/data/mockVersionData.ts",
+        "Define VersionData interface with id, versionNumber, name, date, isCurrent, parentVersionId",
+        "Create array of 8 mock versions (V8 down to V1)",
+        "Mark V8 as current version (isCurrent: true)",
+        "Add realistic timestamps for each version",
+        "Set up parent-child relationships for version tree",
+        "Export mock data and helper functions"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.2",
+      "category": "setup",
+      "description": "Create ReadOnlyFileTree component",
+      "steps": [
+        "Create src/components/ReadOnlyFileTree.tsx",
+        "Copy base structure from FileTree component",
+        "Remove edit/click handlers (read-only)",
+        "Keep expand/collapse functionality",
+        "Style to match existing FileTree but indicate read-only state",
+        "Add prop to accept version-specific file data",
+        "Test with mock skill data"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.3",
+      "category": "functional",
+      "description": "Update GraphSidebar with version list",
+      "steps": [
+        "Import mockVersionData in GraphSidebar.tsx",
+        "Replace existing MOCK_VERSIONS with new data (8 versions)",
+        "Render versions in reverse order (V8 at top, V1 at bottom)",
+        "Add green dot indicator for current version",
+        "Style version list items to match wireframe",
+        "Add hover states for version items",
+        "Keep click handler to open version-viewer tab"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.4",
+      "category": "functional",
+      "description": "Create VersionViewerTab component",
+      "steps": [
+        "Create src/components/tabs/VersionViewerTab.tsx",
+        "Accept versionId and versionName as props",
+        "Display file tree using ReadOnlyFileTree component",
+        "Add preview-only message box with text from wireframe",
+        "Add 'Checkout Version' button at bottom",
+        "Style with proper spacing and borders",
+        "Make button full-width to match wireframe"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.5",
+      "category": "functional",
+      "description": "Implement checkout version functionality",
+      "steps": [
+        "Add checkoutVersion action to WorkspaceContext",
+        "Update currentVersion state when checkout is triggered",
+        "Update StatusBar to reflect new current version",
+        "Close version-viewer tab after checkout (optional UX decision)",
+        "Update version indicator in GraphSidebar (green dot moves)",
+        "Add console log or toast notification on successful checkout",
+        "Test checkout flow end-to-end"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.6",
+      "category": "functional",
+      "description": "Integrate VersionViewerTab into TabContent",
+      "steps": [
+        "Import VersionViewerTab in TabContent.tsx",
+        "Replace placeholder for 'version-viewer' case",
+        "Pass activeTab.versionId and activeTab.title as props",
+        "Ensure tab displays correct version data",
+        "Verify ReadOnlyFileTree shows correct files",
+        "Test tab switching between version viewer and other tabs"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.7",
+      "category": "functional",
+      "description": "Wire version selection to tab opening",
+      "steps": [
+        "Verify GraphSidebar handleVersionClick creates correct tab",
+        "Ensure tab id is unique per version (version-v1, version-v2, etc.)",
+        "Test clicking same version twice focuses existing tab",
+        "Verify version viewer tab shows in TabBar with correct title",
+        "Test opening multiple version tabs simultaneously",
+        "Verify tab persistence when switching sidebar icons"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.8",
+      "category": "visual",
+      "description": "Style version list with current version indicator",
+      "steps": [
+        "Add CSS for version-indicator (green dot) in globals.css",
+        "Position green dot to left of current version text",
+        "Use CSS variable for success color (green)",
+        "Add visual selection state for clicked version",
+        "Ensure version list scrolls if more than viewport height",
+        "Match font sizing and spacing to wireframe",
+        "Test indicator visibility in dark theme"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.9",
+      "category": "visual",
+      "description": "Style VersionViewerTab and preview message box",
+      "steps": [
+        "Add CSS for version-viewer-tab layout in globals.css",
+        "Style preview-only message box with border and padding",
+        "Position file tree and message box to match wireframe",
+        "Style 'Checkout Version' button with accent colors",
+        "Add hover and active states for button",
+        "Ensure proper spacing between elements",
+        "Test layout responsiveness"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.10",
+      "category": "visual",
+      "description": "Polish version list UI",
+      "steps": [
+        "Add version number formatting (Version 8, Version 7, etc.)",
+        "Add subtle hover effect on version list items",
+        "Ensure selected version has visual feedback",
+        "Add smooth transitions for hover states",
+        "Verify text contrast and readability",
+        "Test with different version counts (edge cases)",
+        "Ensure consistent spacing with other sidebar lists"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.11",
+      "category": "testing",
+      "description": "Test version viewer workflow",
+      "steps": [
+        "Verify clicking Graph icon shows version list in sidebar",
+        "Test clicking a version opens version-viewer tab",
+        "Verify viewer tab displays file tree of that version",
+        "Confirm current version has green indicator",
+        "Test 'Checkout' button updates current version",
+        "Verify multiple version tabs can be open simultaneously",
+        "Test tab close functionality for version viewer tabs",
+        "Verify version indicator moves after checkout"
+      ],
+      "passes": false
+    },
+    {
+      "id": "4.12",
+      "category": "testing",
+      "description": "Build and verification",
+      "steps": [
+        "Run npm run build",
+        "Verify build completes without errors",
+        "Check TypeScript compilation passes",
+        "Run npm run lint",
+        "Verify no linting errors",
+        "Test all passing conditions from sprint definition"
+      ],
+      "passes": false
+    }
+  ],
+  "totalTasks": 12,
+  "completedTasks": 0,
+  "status": "pending",
+  "completedAt": null
+}
