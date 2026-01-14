@@ -39,6 +39,7 @@ export default function DynamicSidebar() {
     <div className="dynamic-sidebar">
       <IconStrip />
       <div className="sidebar-content-area">
+        {/* Show selected icon strip item name */}
         {renderSidebarContent()}
       </div>
       <StatusBar />

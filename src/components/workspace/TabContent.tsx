@@ -20,11 +20,11 @@ export default function TabContent() {
     case 'editor':
       return (
         <div className="tab-content-editor">
-          {activeTab.path && (
+          {/* {activeTab.path && (
             <div className="editor-header">
               <span className="editor-filepath">{activeTab.path}</span>
             </div>
-          )}
+          )} */}
           <MonacoEditor
             content={activeTab.content || ''}
             language={activeTab.language || 'text'}
