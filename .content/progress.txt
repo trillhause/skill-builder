@@ -459,3 +459,22 @@ All requirements met:
 - TypeScript compilation passed
 - Build successful (715.3ms)
 
+
+[2026-01-14 12:10] Task 4.3: Update GraphSidebar with version list - COMPLETE
+- Updated src/components/sidebars/GraphSidebar.tsx
+- Imported getAllVersions() from mockVersionData
+- Replaced MOCK_VERSIONS with real data (8 versions)
+- Versions rendered in reverse order (V8 at top, V1 at bottom)
+- Added green dot indicator for current version (V8)
+- Implemented version-list-item structure with indicator
+- Added CSS styling in globals.css:
+  - .version-list-item with flex layout and 8px gap
+  - .version-indicator with 8px circular dot
+  - .version-indicator.current with green background (--accent-success)
+  - Added subtle glow effect with box-shadow
+- Current version marker displays on V8
+- Hover states work on all version items
+- Click handler opens version-viewer tab
+- TypeScript compilation passed
+- Build successful (746.3ms)
+

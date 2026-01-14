@@ -31,7 +31,7 @@
         "Add prop to accept version-specific file data",
         "Test with mock skill data"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "4.3",

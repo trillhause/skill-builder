@@ -528,6 +528,25 @@ a {
   white-space: nowrap;
 }
 
+/* Version List Item */
+.version-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.version-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.version-indicator.current {
+  background-color: var(--accent-success);
+  box-shadow: 0 0 4px var(--accent-success);
+}
+
 /* Files Sidebar */
 .files-sidebar {
   height: 100%;

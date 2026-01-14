@@ -2,15 +2,11 @@
 
 import { useWorkspace } from '@/contexts/WorkspaceContext';
 import { Plus } from 'lucide-react';
-
-const MOCK_VERSIONS = [
-  { id: 'v1', name: 'Version 1', date: '2026-01-14' },
-  { id: 'v2', name: 'Version 2', date: '2026-01-13' },
-  { id: 'v3', name: 'Version 3', date: '2026-01-12' }
-];
+import { getAllVersions } from '@/data/mockVersionData';
 
 export default function GraphSidebar() {
   const { openTab } = useWorkspace();
+  const versions = getAllVersions(); // Returns sorted by version number descending (V8, V7, V6...)
 
   const handleVersionClick = (versionId: string, versionName: string) => {
     openTab({
@@ -31,13 +27,18 @@ export default function GraphSidebar() {
         </button>
       </div>
       <div className="sidebar-list">
-        {MOCK_VERSIONS.map((version) => (
+        {versions.map((version) => (
           <div
             key={version.id}
             className="sidebar-list-item"
             onClick={() => handleVersionClick(version.id, version.name)}
           >
-            <span className="sidebar-item-name">{version.name}</span>
+            <div className="version-list-item">
+              {version.isCurrent && (
+                <span className="version-indicator current" title="Current Version"></span>
+              )}
+              <span className="sidebar-item-name">{version.name}</span>
+            </div>
             <span className="sidebar-item-meta">{version.date}</span>
           </div>
         ))}
