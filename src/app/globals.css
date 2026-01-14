@@ -1233,6 +1233,12 @@ a {
 
 .trajectory-step-content {
   padding: var(--spacing-sm);
+  transition: max-height 0.2s ease;
+}
+
+.trajectory-step-summary {
+  padding: var(--spacing-sm);
+  opacity: 0.7;
 }
 
 .trajectory-step-text {
@@ -1243,4 +1249,25 @@ a {
   color: var(--text-primary);
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.trajectory-step-text-summary {
+  font-size: 12px;
+}
+
+.step-expand-icon {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.trajectory-step-header {
+  cursor: default;
+}
+
+.trajectory-step-header:has(.step-expand-icon) {
+  cursor: pointer;
+}
+
+.trajectory-step-header:has(.step-expand-icon):hover {
+  background: var(--bg-hover);
 }

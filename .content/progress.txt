@@ -1204,3 +1204,24 @@ All requirements met:
 - TypeScript compilation passed
 - Build successful (857.4ms)
 
+[2026-01-14 17:45] Task 6.6: Implement expandable trajectory sections - COMPLETE
+- Updated TrajectoryStepDisplay component with expand/collapse functionality
+- Add expand/collapse toggle with ChevronRight/ChevronDown icons
+- Store expanded state in component useState
+- Collapse large content by default (content > 200 chars, tool_call, result)
+- Show summary text for collapsed sections (truncated to 200 chars)
+- Click header to toggle expand/collapse (only when collapsible)
+- Animate transitions with CSS (0.2s ease)
+- Allow multiple sections to be expanded simultaneously
+- Show expand icon only on collapsible sections
+- Cursor changes to pointer on clickable headers
+- Hover state on clickable headers
+- Added CSS styles:
+  - .trajectory-step-summary with reduced opacity
+  - .trajectory-step-text-summary with smaller font
+  - .step-expand-icon with secondary color
+  - Clickable header detection with :has(.step-expand-icon)
+  - Hover state for clickable headers
+- TypeScript compilation passed
+- Build successful (766.8ms)
+

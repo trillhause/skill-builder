@@ -80,7 +80,7 @@
         "Handle empty state when no output yet",
         "Make output area scrollable with auto-scroll to bottom"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "6.6",

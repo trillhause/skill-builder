@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Play, CheckCircle2, Clock, XCircle, MessageSquare, PlayCircle, AlertTriangle } from 'lucide-react';
+import { Play, CheckCircle2, Clock, XCircle, MessageSquare, PlayCircle, AlertTriangle, ChevronRight, ChevronDown } from 'lucide-react';
 import { getRunThreadById, RunStatus, TrajectoryStep } from '@/data/mockRunData';
 
 interface RunTabProps {
@@ -22,6 +22,22 @@ interface TrajectoryStepDisplayProps {
 }
 
 function TrajectoryStepDisplay({ step }: TrajectoryStepDisplayProps) {
+  const [isExpanded, setIsExpanded] = useState(step.expanded !== false);
+
+  const isLargeContent = step.content.length > 200;
+  const isCollapsible = step.type === 'tool_call' || step.type === 'result' || isLargeContent;
+  const defaultCollapsed = isCollapsible && step.expanded !== true;
+
+  useEffect(() => {
+    if (defaultCollapsed) {
+      setIsExpanded(false);
+    }
+  }, [defaultCollapsed]);
+
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const getStepIcon = () => {
     switch (step.type) {
       case 'message':
@@ -56,18 +72,38 @@ function TrajectoryStepDisplay({ step }: TrajectoryStepDisplayProps) {
     return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   };
 
+  const getSummaryText = () => {
+    if (step.content.length > 200) {
+      return step.content.substring(0, 200) + '...';
+    }
+    return step.content;
+  };
+
   return (
     <div className={`trajectory-step trajectory-step-${step.type}`}>
-      <div className="trajectory-step-header">
+      <div className="trajectory-step-header" onClick={toggleExpanded}>
         <div className="trajectory-step-header-left">
+          {isCollapsible && (
+            isExpanded ? (
+              <ChevronDown size={14} className="step-expand-icon" />
+            ) : (
+              <ChevronRight size={14} className="step-expand-icon" />
+            )
+          )}
           {getStepIcon()}
           <span className="trajectory-step-type">{getStepTypeLabel()}</span>
         </div>
         <span className="trajectory-step-time">{formatTime(step.timestamp)}</span>
       </div>
-      <div className="trajectory-step-content">
-        <pre className="trajectory-step-text">{step.content}</pre>
-      </div>
+      {isExpanded ? (
+        <div className="trajectory-step-content">
+          <pre className="trajectory-step-text">{step.content}</pre>
+        </div>
+      ) : (
+        <div className="trajectory-step-summary">
+          <pre className="trajectory-step-text trajectory-step-text-summary">{getSummaryText()}</pre>
+        </div>
+      )}
     </div>
   );
 }
