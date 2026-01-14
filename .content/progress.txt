@@ -1030,3 +1030,24 @@ All requirements met:
 ✓ End-to-end workflow tested and verified
 ✓ Build and lint pass
 
+
+[2026-01-14 17:10] Bug Fix: Terminal not rendering (Post Sprint 5)
+- Issue: Terminal tab opened but no terminal visible (blank screen)
+- Root cause: xterm.js imports during SSR caused rendering failure
+- Investigation: Used Chrome DevTools MCP to inspect:
+  - terminalContainer existed but had 0 children
+  - No console errors
+  - Module import failed in browser: "Failed to resolve module specifier '@xterm/xterm'"
+- Solution: Changed to dynamic imports in useEffect
+  - Wrapped Terminal and FitAddon imports in async function
+  - Added isLoading state for loading indicator
+  - Added mounted flag to prevent memory leaks
+  - Moved all xterm initialization into async initTerminal() function
+- Result: Terminal now renders correctly with all functionality working:
+  ✓ Terminal displays with welcome message
+  ✓ Commands execute properly (ls, pwd, echo, etc.)
+  ✓ Cursor visible and blinking
+  ✓ Dark theme applied correctly
+  ✓ Environment selector functional
+  ✓ Command history working
+
